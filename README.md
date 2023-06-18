@@ -1,2 +1,2 @@
-# proj-tech-spectrum
+# Project Tech Spectrum
 BCA final year college project
