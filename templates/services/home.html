@@ -1,0 +1,54 @@
+{% extends 'services/base.html' %} {% load static %} {% csrf_token %} {% block title %}
+Home Page {% endblock title %} {% block body %}
+<header>
+  <nav class="nav-bar">
+    <div class="logo">
+      <a href="#">LOGO</a>
+    </div>
+    <div class="site-links">
+      <ul>
+        <li><a href="#">Store</a></li>
+        <li><a href="#">Phone</a></li>
+        <li><a href="#">TV & LifeStyle</a></li>
+        <li><a href="#">Laptop</a></li>
+      </ul>
+    </div>
+    <div class="support">
+      <a href="#">Support</a>
+    </div>
+    <div class="btn-link">
+      <button class="sp-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="sp-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </button>
+      <button class="sp-btn">
+        <i class="fa-solid fa-user"></i>
+      </button>
+      <button class="sp-btn" id="bar">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<main>
+  <div class="carousel">
+    <button class="carousel-button prev"></button>
+    <ul>
+      <li class="slide" data-active>
+        <img src="{% static 'services/images/phone1.jpg' %}" alt="Image 1" />
+      </li>
+      <li class="slide">
+        <img src="{% static 'services/images/phone2.jpg' %}" alt="Image 1" />
+      </li>
+      <li class="slide">
+        <img src="{% static 'services/images/phone3.jpg' %}" alt="Image 1" />
+      </li>
+    </ul>
+  </div>
+</main>
+
+<script src="{% static 'services/javascript/home.js' %}"></script>
+
+{% endblock body %}
