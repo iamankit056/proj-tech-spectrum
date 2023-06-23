@@ -5,7 +5,7 @@ Home Page {% endblock title %} {% block body %}
     <div class="logo">
       <a href="#">LOGO</a>
     </div>
-    <div class="site-links">
+    <div class="site-links" id="link">
       <ul>
         <li><a href="#">Store</a></li>
         <li><a href="#">Phone</a></li>
@@ -22,11 +22,12 @@ Home Page {% endblock title %} {% block body %}
       </button>
       <button class="sp-btn">
         <i class="fa-solid fa-cart-shopping"></i>
+        <span class="badge">1</span>
       </button>
       <button class="sp-btn">
         <i class="fa-solid fa-user"></i>
       </button>
-      <button class="sp-btn" id="bar">
+      <button class="sp-btn" id="bar" onclick="menu()">
         <i class="fa-solid fa-bars"></i>
       </button>
     </div>
@@ -47,8 +48,18 @@ Home Page {% endblock title %} {% block body %}
       </li>
     </ul>
   </div>
+  <div class="new-arrivals">
+
+  </div>
 </main>
-
-<script src="{% static 'services/javascript/home.js' %}"></script>
-
+<script>
+  function menu() {
+    link = document.getElementById("link");
+    if (link.style.display === "none") {
+      link.style.display = "block";
+    } else {
+      link.style.display = "none";
+    }
+  }
+</script>
 {% endblock body %}

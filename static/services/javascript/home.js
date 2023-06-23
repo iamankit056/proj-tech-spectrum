@@ -39,3 +39,5 @@ document.addEventListener("keydown", function (event) {
   }
 });
 //end of carousel code
+
+//menu in same screen

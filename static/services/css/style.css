@@ -20,13 +20,16 @@
  }
 
  .nav-bar {
+     position: fixed;
+     z-index: 1;
      min-width: 100%;
      padding: 2rem 1rem;
      display: flex;
      gap: 2rem;
      align-items: center;
+     box-shadow: 0 0 7px rgba(0, 0, 0, 0.773);
      background-color: rgb(255, 255, 255);
-     box-shadow: 0 0 5px rgba(0, 0, 0, 0.966);
+     overflow-y: hidden;
  }
 
  .logo {
@@ -38,48 +41,126 @@
      font-size: 2rem;
      color: rgb(92, 92, 92);
  }
-@media (min-width: 900px) {
-    
 
- .site-links {
-     margin-left: 2rem;
-     margin-right: 2rem;
-     flex-grow: 1;
+
+ @media (min-width: 900px) {
+     .site-links {
+         display: block;
+         margin-left: 2rem;
+         margin-right: 2rem;
+         flex-grow: 1;
+     }
+
+     .site-links ul {
+         list-style: none;
+         display: flex;
+         flex-direction: row;
+         gap: 3rem;
+     }
+
+     .site-links ul li {
+         display: inline-block;
+     }
+
+     .site-links ul li a {
+         text-decoration: none;
+         font-size: 2rem;
+         color: rgb(92, 92, 92);
+     }
+
+     .site-links ul li:after {
+         content: '';
+         margin: auto;
+         display: block;
+         height: 0.4rem;
+         width: 0%;
+         border-radius: 1rem;
+         background-color: transparent;
+         transition: all 0.5s ease;
+     }
+
+     .site-links ul li:hover:after {
+         width: 100%;
+         background-image: linear-gradient(45deg, rgb(5, 247, 243), rgb(10, 130, 229));
+     }
+
+     .site-links ul li:after {
+         content: '';
+         margin: auto;
+         display: block;
+         height: 0.4rem;
+         width: 0%;
+         border-radius: 1rem;
+         background-color: transparent;
+         transition: all 0.5s ease;
+     }
+
+     .site-links ul li:hover:after {
+         width: 100%;
+         background-image: linear-gradient(45deg, rgb(5, 247, 243), rgb(10, 130, 229));
+     }
+
+
+
+     #bar {
+         display: none;
+     }
  }
 
- .site-links ul {
-     list-style: none;
-     display: flex;
-     flex-direction: row;
-     gap: 3rem;
- }
+ @media (max-width: 900px) {
+     body {
+         font-size: 1px;
+     }
 
- .site-links ul li {
-     display: inline-block;
- }
+     .site-links {
+         display: none;
+         position: fixed;
+         width: 40vw;
+         height: 100vh;
+         background-color: rgb(255, 255, 255);
+         top: 10.8%;
+         left: 65%;
+         border-top: solid 2px rgb(5, 247, 243);
+         box-shadow: -10px 0px 10px 1px rgba(0, 0, 0, 0.);
+     }
 
- .site-links ul li a {
-     text-decoration: none;
-     font-size: 2rem;
-     color: rgb(92, 92, 92);
- }
+     .logo {
+         flex-grow: 1;
+     }
 
- .site-links ul li:after {
-     content: '';
-     margin: auto;
-     display: block;
-     height: 0.4rem;
-     width: 0%;
-     border-radius: 1rem;
-     background-color: transparent;
-     transition: all 0.5s ease;
- }
+     .site-links ul li {
+         padding-top: 2rem;
+         padding-bottom: 2rem;
+         margin-left: 1rem;
+         align-items: left;
+     }
 
- .site-links ul li:hover:after {
-     width: 100%;
-     background-image: linear-gradient(45deg, rgb(5, 247, 243), rgb(10, 130, 229));
+     .site-links ul li a {
+         display: block;
+         text-decoration: none;
+         font-size: 2rem;
+         color: rgb(92, 92, 92);
+     }
+
+     .support a {
+         display: none;
+     }
+
+     .site-links ul li:after {
+         content: '';
+         display: block;
+         height: 0.4rem;
+         width: 0%;
+         border-radius: 1rem;
+         background-color: transparent;
+         transition: all 0.5s ease;
+     }
+
+     .site-links ul li:hover:after {
+         width: 100%;
+         background-image: linear-gradient(45deg, rgb(5, 247, 243), rgb(10, 130, 229));
+     }
  }
-}
 
  .support {
      margin-left: 2rem;
@@ -120,20 +201,28 @@
      font-size: 2rem;
  }
 
- .sp-btn:hover,
- .sp-btn:focus {
+ .btn-link .badge {
+     position: absolute;
+     font-size: 1.5rem;
+     top: 0.1rem;
+     padding: 0.3rem 0.8rem;
+     border-radius: 50%;
+     background-image: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
+     color: white;
+ }
+
+ .sp-btn:hover {
      background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
      -webkit-text-fill-color: transparent;
      -webkit-background-clip: text;
  }
 
- #bar {
-     display: none;
- }
+
+
  .carousel {
      max-width: 100%;
      min-height: 70vh;
-     margin: 0 auto;
+     margin: 5rem auto auto;
      position: relative;
      overflow: hidden;
  }
