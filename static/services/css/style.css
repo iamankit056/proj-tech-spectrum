@@ -256,7 +256,7 @@
  .btn-link .badge {
      position: absolute;
      font-size: 1.5rem;
-     top: 0.1rem;
+     top: 0.2rem;
      padding: 0.3rem 0.8rem;
      border-radius: 50%;
      background-image: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
