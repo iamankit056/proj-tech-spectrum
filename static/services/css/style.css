@@ -332,16 +332,16 @@
      position: relative;
      display: grid;
      width: 95%;
-     margin: auto;
+     margin: 1% auto;
      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-     grid-gap: 20px;
+     grid-gap: 1%;
      justify-content: center;
      align-items: center;
  }
 
  .product-card {
-     margin: 5% 3% auto;
-     height: 350px;
+     margin: auto;
+     height: 88%;
      background-color: rgb(255, 255, 255);
      border: 1px solid #ccc;
      border-radius: 10px;
@@ -352,7 +352,7 @@
  }
 
  .product-title {
-     font-size: 20px;
+     font-size: 1.8rem;
      margin-top: 20px;
      margin-left: 32px;
      font-weight: bold;
@@ -367,14 +367,14 @@
  }
 
  .market-details ul {
-     margin: 24px 32px;
+     margin: 2.4rem 3.2rem;
      list-style: none;
      overflow: hidden;
      display: flex;
  }
 
  .market-details li {
-     font-size: 14px;
+     font-size: 1.4rem;
      margin: 5px;
      padding: 3px 5px;
      border-radius: 5px;
@@ -404,31 +404,32 @@
 
  .product-price {
      display: flex;
+     margin-left: 2rem;
      justify-content: flex-end;
      flex-direction: column;
-     font-size: 18px;
-     color: #333;
+     font-size: 1.8rem;
+     color: rgb(0, 0, 0);
 
  }
 
  .product-price span {
-     font-size: 18px;
-     color: #999;
+     font-size: 1.7rem;
+     color: rgb(92, 92, 92);
  }
 
  .product-price strong {
-     font-size: 20px;
+     font-size: 1.8rem;
      font-weight: bold;
  }
 
  .product-price del {
-     color: #999;
+     color:rgb(92, 92, 92);
      text-decoration-line: line-through;
  }
 
  .product-image {
-     width: 250px;
-     height: 250px;
+     width: 100%;
+     height: 100%;
      margin-top: 10px;
      overflow: hidden;
  }
@@ -437,11 +438,4 @@
      width: 100%;
      height: 100%;
      object-fit: cover;
- }
-
- @media (min-width:1024px) {
-     .product-image {
-         height: 200px;
-         width: 200px;
-     }
  }
