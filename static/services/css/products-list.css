@@ -1,0 +1,187 @@
+.fillter-bar {
+    margin: 8rem auto 2rem;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(242, 250, 253);
+}
+
+.product-title {
+    margin: 3.2rem 2.8rem 2rem;
+    font-size: 3.4rem;
+}
+
+.fillter-list {
+    display: flex;
+    margin: auto 3rem;
+    font-size: 2rem;
+}
+
+.fillter-list li {
+    margin-right: 2%;
+}
+
+select {
+    font-size: 2rem;
+    padding: auto 1.5rem;
+    background-color: transparent;
+    border: 0px;
+    outline: 0px;
+    font-weight: 600;
+    color: rgb(92, 92, 92);
+}
+
+select option {
+    outline: 0px;
+    border: 0px;
+}
+
+option:hover {
+    background-image: linear-gradient(360deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
+}
+
+.sort-list {
+    border-right: 1px solid rgb(92, 92, 92);
+    padding-right: 2rem;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+li:hover,
+li:focus,
+li:active {
+    background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+input[type="radio"].fillter:checked+span {
+    background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+input[type="radio"].fillter:checked+select {
+    background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.pro-card {
+    margin: auto;
+    margin-bottom: 2rem;
+    padding: 5px;
+    width: 95%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+}
+
+.pro-details {
+    margin: 15px 20px;
+    font-size: 14px;
+}
+
+.pro-review-star {
+    display: flex;
+    margin: 7px auto;
+}
+
+.pro-title {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.reviews {
+    font-size: 1rem;
+    padding-left: 5px;
+}
+
+.stars {
+    font-size: 1rem;
+    padding-left: 5px;
+    color: rgb(255,215,0);
+}
+
+.pro-spec {
+    font-size: 1.5rem ;
+    margin-left:0;
+}
+
+.product-img {
+    width: 200px;
+    height: 200px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mar-details {
+    margin: 12px auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mar-details ul {
+    list-style: none;
+    overflow: hidden;
+    display: flex;
+}
+
+.mar-details li {
+    font-size: 14px;
+    margin: 5px;
+    margin-left: 0;
+    padding: 3px 5px;
+    border-radius: 5px;
+    align-self: center;
+    color: rgb(92, 92, 92);
+    font-weight: 700;
+}
+
+.mar-details .discount {
+    font-size: 1.2rem;
+    border: 2px solid rgb(5, 199, 247);
+    background-color: rgba(0, 255, 255, 0.5);
+}
+
+.mar-details .new {
+    font-size: 1.2rem;
+    border: 2px solid rgb(66, 253, 3);
+    background-color: rgba(0, 255, 81, 0.4);
+}
+
+.pro-price {
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+
+}
+
+.pro-price strong {
+    margin: auto 5px;
+}
+
+.pro-card:hover>.pro-details .pro-title {
+    background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}

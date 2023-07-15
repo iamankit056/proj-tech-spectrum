@@ -241,7 +241,7 @@
      background-image: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
  }
 
- .btn-link .sp-btn {
+ .btn-link .sp-btn{
      border: 0;
      border-radius: 0;
      background-color: transparent;
@@ -263,7 +263,7 @@
      color: white;
  }
 
- .sp-btn:hover {
+ .sp-btn .fa-solid:hover + .fa-solid:hover:focus {
      background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
      -webkit-text-fill-color: transparent;
      -webkit-background-clip: text;
@@ -428,8 +428,8 @@
  }
 
  .product-image {
-     width: 100%;
-     height: 100%;
+     width: 200px;
+     height: 200px;
      margin-top: 10px;
      overflow: hidden;
  }
