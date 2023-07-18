@@ -1,16 +1,11 @@
+{% extends 'services/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% csrf_token %}
+    {% block stylesheet %}<link rel="stylesheet" href="{% static './services/css/sproduct.css' %}">{% endblock stylesheet %}
+    
+    {% block title %} Realme C55{% endblock title %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/0a433bd601.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static './services/css/sproduct.css' %}">
-    <title>Product-Page</title>
-</head>
-
-<body>
+{% block main %}
     <section class="sproduct">
         <div class="row">
             <div class="col-img">
@@ -273,6 +268,4 @@
             }
         }
     </script>
-</body>
-
-</html>
+<{% endblock main %}

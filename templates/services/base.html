@@ -15,8 +15,9 @@
       src="https://kit.fontawesome.com/0a433bd601.js"
       crossorigin="anonymous"
     ></script>
+    {% block stylesheet %}{% endblock stylesheet %}
     <link rel="stylesheet" href="{% static 'services/css/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'services/css/products-list.css' %}" />
+    
     <title>{% block title %}{% endblock title %}</title>
   </head>
 

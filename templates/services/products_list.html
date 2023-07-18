@@ -1,6 +1,7 @@
 {% extends 'services/base.html' %}
 {% load static %}
 {% csrf_token %}
+{% block stylesheet %}<link rel="stylesheet" href="{% static 'services/css/products-list.css' %}" />{% endblock stylesheet%}
 {% block title %} Products list{% endblock title %}
 {% block main %}
 <div class="fillter-bar">
