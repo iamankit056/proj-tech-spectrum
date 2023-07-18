@@ -247,7 +247,7 @@ input[type="radio"]:checked+label {
 }
 
 .sum-rating {
-    /* flex-grow: 1; */
+    flex-grow: 1;
 }
 
 #review-form {
