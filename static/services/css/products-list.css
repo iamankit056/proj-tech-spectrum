@@ -185,3 +185,7 @@ ul {
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
+.pro-price del{
+    font-size: 1.5rem;
+    margin: auto 5px
+}

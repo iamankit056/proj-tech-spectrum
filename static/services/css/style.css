@@ -57,6 +57,79 @@
      min-width: 100%;
  }
 
+ .logo {
+     margin-left: 2rem;
+ }
+
+ .logo a {
+     text-decoration: none;
+     font-size: 2rem;
+     color: rgb(92, 92, 92);
+ }
+
+ .search-drop {
+     height: 20vh;
+     position: absolute;
+     top: -200px;
+     z-index: 2;
+     width: 100%;
+     box-shadow:  0 0 5px rgb(0, 0, 0);
+     background-color: rgb(255, 255, 255);
+     border-bottom-right-radius: 20px;
+     border-bottom-left-radius: 20px;
+     transition: all ease-in-out 0.4s;
+ }
+.s-close{
+    align-self: right;
+    
+}
+ .search-area {
+     align-self: center;
+     width: 60%;
+     margin: auto;
+     border: solid 1px rgb(93, 93, 93);
+     border-radius: 15px;
+     display: flex;
+ }
+
+ .s-btn {
+     border: 0;
+     border-radius: 0;
+     background-color: transparent;
+     height: 50px;
+     width: 50px;
+     margin-left: 20px;
+ }
+
+ .s-btn i {
+     color: rgb(92, 92, 92);
+     font-size: 20px;
+ }
+
+ .s-btn .fa-solid:hover {
+     background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
+     -webkit-text-fill-color: transparent;
+     -webkit-background-clip: text;
+ }
+
+ .search-bar {
+     width: 90%;
+     height: 50px;
+ }
+
+ #searchbar {
+     width: 100%;
+     height: 90%;
+     margin: auto;
+     font-size: 20px;
+     outline: none;
+     border: none;
+ }
+
+ .search-area:focus-within {
+     border-color: rgb(5, 126, 247);
+ }
+
  .nav-bar {
      position: fixed;
      z-index: 1;
@@ -71,15 +144,7 @@
      overflow-y: hidden;
  }
 
- .logo {
-     margin-left: 2rem;
- }
 
- .logo a {
-     text-decoration: none;
-     font-size: 2rem;
-     color: rgb(92, 92, 92);
- }
 
  .site-links {
      display: block;
@@ -168,9 +233,9 @@
          border-top: solid 2px rgb(5, 247, 243);
          box-shadow: -10px 0px 10px 1px rgba(0, 0, 0, 0.);
          z-index: 2;
-         -webkit-animation: fadeIn 0.7s;
+         -webkit-animation: fadeIn 0.3s;
          animation-delay: 1s;
-         animation: fadeIn 0.7s;
+         animation: fadeIn 0.3s;
      }
 
      .logo {
@@ -241,14 +306,14 @@
      background-image: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
  }
 
- .btn-link .sp-btn{
+ .sp-btn {
      border: 0;
      border-radius: 0;
      background-color: transparent;
      margin: auto 2rem;
  }
 
- .btn-link .sp-btn i {
+ .sp-btn i {
      color: rgb(92, 92, 92);
      font-size: 2rem;
  }
@@ -263,11 +328,12 @@
      color: white;
  }
 
- .sp-btn .fa-solid:hover + .fa-solid:hover:focus {
+ .sp-btn .fa-solid:hover {
      background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
      -webkit-text-fill-color: transparent;
      -webkit-background-clip: text;
  }
+
 
  .carousel {
      display: block;
@@ -298,10 +364,10 @@
  }
 
  .slide[data-active] {
-     -webkit-animation: fadeIn 1s;
+     -webkit-animation: fadeIn 5s;
      display: block;
      animation-delay: 3s;
-     animation: fadeIn 2s;
+     animation: fadeIn 3s;
 
  }
 
@@ -423,7 +489,7 @@
  }
 
  .product-price del {
-     color:rgb(92, 92, 92);
+     color: rgb(92, 92, 92);
      text-decoration-line: line-through;
  }
 

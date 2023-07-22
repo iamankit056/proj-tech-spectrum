@@ -1,60 +1,123 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/0a433bd601.js"
-      crossorigin="anonymous"
-    ></script>
-    {% block stylesheet %}{% endblock stylesheet %}
-    <link rel="stylesheet" href="{% static 'services/css/style.css' %}" />
-    
-    <title>{% block title %}{% endblock title %}</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
-    <header>
-      <nav class="nav-bar">
-        <div class="logo">
-          <a href="#">LOGO</a>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/0a433bd601.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'services/css/style.css' %}" />
+  {% block stylesheet %}{% endblock stylesheet %}
+  <script src="{% static 'services/javascript/home.js' %}">
+  </script>
+  <title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+  <header>
+    <section class="search-drop" id="searchBarContainer">
+      <div class="s-close">
+        <button class="s-btn" onclick="closesearch()">
+        <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="search-area">
+        <button class="s-btn" >
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <div class="search-bar">
+          <input type="search" name="" id="searchbar">
         </div>
-        <div class="site-links" id="link">
-          <ul>
-            <li><a href="#">Store</a></li>
-            <li><a href="products_list">Phone</a></li>
-            <li><a href="#">TV & LifeStyle</a></li>
-            <li><a href="#">Laptop</a></li>
-          </ul>
-        </div>
-        <div class="support">
-          <a href="#">Support</a>
-        </div>
-        <div class="btn-link">
-          <button class="sp-btn">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-          <button class="sp-btn">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span class="badge">1</span>
-          </button>
-          <button class="sp-btn">
-            <i class="fa-solid fa-user"></i>
-          </button>
-          <button class="sp-btn" id="bar" onclick="menu()">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-        </div>
-      </nav>
-    </header>
-    <main>{% block main %}{% endblock main %}</main>
-  </body>
+      </div>
+    </section>
+    <nav class="nav-bar" id="nav-bar">
+      <div class="logo">
+        <a href="#">LOGO</a>
+      </div>
+      <div class="site-links" id="link">
+        <ul>
+          <li><a href="#">Store</a></li>
+          <li><a href="products_list">Phone</a></li>
+          <li><a href="#">TV & LifeStyle</a></li>
+          <li><a href="#">Laptop</a></li>
+        </ul>
+      </div>
+      <div class="support">
+        <a href="#">Support</a>
+      </div>
+      <div class="btn-link">
+        <button class="sp-btn" onclick="toggleSearchBar()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button class="sp-btn">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge">1</span>
+        </button>
+        <button class="sp-btn">
+          <i class="fa-solid fa-user"></i>
+        </button>
+        <button class="sp-btn" id="bar" onclick="menu()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main>{% block main %}{% endblock main %}</main>
+  <script>
+    var carousel = document.querySelector(".carousel");
+var slides = carousel.querySelectorAll(".slide");
+var activeSlide = carousel.querySelector("[data-active]");
+console.log(slides)
+
+var activeIndex = Array.prototype.indexOf.call(slides, activeSlide);
+function nextSlide() {
+  activeSlide.removeAttribute("data-active");
+  activeIndex++;
+  if (activeIndex == slides.length) {
+    activeIndex = 0;
+  }
+  activeSlide = slides[activeIndex];
+  activeSlide.setAttribute("data-active", "");
+}
+
+function prevSlide() {
+  activeSlide.removeAttribute("data-active");
+  activeIndex--;
+  if (activeIndex < 0) {
+    activeIndex = slides.length - 1;
+  }
+  activeSlide = slides[activeIndex];
+  activeSlide.setAttribute("data-active", "");
+}
+
+var interval = setInterval(nextSlide, 3000);
+document.addEventListener("keydown", function (event) {
+  if (event.keyCode == 37) {
+    prevSlide();
+    clearInterval(interval);
+    interval = setInterval(nextSlide, 3000);
+  }
+
+  if (event.keyCode == 39) {
+    nextSlide();
+    clearInterval(interval);
+    interval = setInterval(nextSlide, 3000);
+  }
+});
+    function toggleSearchBar() {
+      document.getElementById("searchBarContainer").style.top = "0px"
+      document.getElementById("nav-bar").style.display = "none"
+    }
+    function closesearch(){
+      document.getElementById("searchBarContainer").style.top = "-200px"
+      document.getElementById("nav-bar").style.display = "flex"
+    }
+  </script>
+</body>
+
 </html>
