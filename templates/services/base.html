@@ -43,7 +43,7 @@
         <ul>
           <li><a href="{% url 'homepage_url' %}">Store</a></li>          
           {% for category in categories %}
-          <li><a href="{% url 'homepage_url' category %}">category.name</a></li>
+          <li><a href="{% url 'products_list_url' category %}">{{category.name}}</a></li>
           {% endfor %}
         </ul>
       </div>
