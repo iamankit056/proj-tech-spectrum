@@ -3,7 +3,7 @@ from .models import (
     Category,
     Product,
     ProductDescription,
-    ProductImages
+    ProductImage
 )
 
 # Register your models here.
@@ -15,7 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'price', 'discount', 'category')
 
 
-class ProductImagesAdmin(admin.ModelAdmin):
+class ProductImageAdmin(admin.ModelAdmin):
     list_display = ('id', 'product', 'image')
 
 
@@ -25,5 +25,5 @@ class ProductDescriptionAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ProductImages, ProductImagesAdmin)
+admin.site.register(ProductImage, ProductImageAdmin)
 admin.site.register(ProductDescription, ProductDescriptionAdmin)

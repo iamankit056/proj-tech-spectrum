@@ -35,7 +35,7 @@ def random_file_name_and_path(instance, filename):
     return os.path.join(upload_to, filename)
 
 
-class ProductImages(models.Model):
+class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=random_file_name_and_path)
 
