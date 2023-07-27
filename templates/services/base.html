@@ -37,14 +37,14 @@
     </section>
     <nav class="nav-bar" id="nav-bar">
       <div class="logo">
-        <a href="#">LOGO</a>
+        <a href="{% url 'homepage_url' %}">LOGO</a>
       </div>
       <div class="site-links" id="link">
         <ul>
-          <li><a href="#">Store</a></li>
-          <li><a href="products_list">Phone</a></li>
-          <li><a href="#">TV & LifeStyle</a></li>
-          <li><a href="#">Laptop</a></li>
+          <li><a href="{% url 'homepage_url' %}">Store</a></li>          
+          {% for category in categories %}
+          <li><a href="{% url 'homepage_url' category %}">category.name</a></li>
+          {% endfor %}
         </ul>
       </div>
       <div class="support">
