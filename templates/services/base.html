@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="{% static 'services/css/products-list.css' %}" />
     <title>{% block title %}{% endblock title %}</title>
   </head>
-
   <body>
     <header>
       <nav class="nav-bar">
@@ -45,8 +44,8 @@
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="badge">1</span>
           </button>
-          <button class="sp-btn">
-            <i class="fa-solid fa-user"></i>
+          <button class="sp-btn ">
+            <a href="account/Mylogin"><i class="fa-solid fa-user"></i></a>
           </button>
           <button class="sp-btn" id="bar" onclick="menu()">
             <i class="fa-solid fa-bars"></i>

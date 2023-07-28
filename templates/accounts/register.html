@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>register</title>
+    <link rel="stylesheet" href="{% static 'accounts/register.css' %}">
+  </head>
+  <body>
+    <form action=" {% url'register' %} " method="POST">
+        <div class="signup">
+          <H1> SIGNUP! </H1>
+        <div id="f1">
+          <input type="text" class=" inp2" name="firstname" placeholder=" First Name " required=""/>
+          <input type="text" class=" inp2" name="lasttname" placeholder=" Last Name "  required/><br /><br />
+          <input type="email" class="inp" name="email" placeholder=" E-mail " required /><br /><br />
+          <input type="number" class="inp" name="Number" placeholder=" Number " required /><br /><br />
+          <input type="password" class="inp" name="Password" placeholder=" Password " required /><br /><br />
+          <input type="password" class="inp" name="Conformpassword" placeholder=" Conformpassword " required /><br /><br />
+          <input type="button" class="button" value="SIGNUP" /><br><br />
+            I already have an account <a href="Mylogin">login</a><br><br>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
