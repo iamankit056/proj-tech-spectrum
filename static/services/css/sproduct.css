@@ -18,10 +18,10 @@ body {
 
 .row {
     display: flex;
-    margin: 32px 0;
-    width: 95%;
+    min-width: 95%;
+    margin-top: 12rem;
+    margin-bottom: 3.5rem;
 }
-
 .col-img {
     display: flex;
     width: 500px;
@@ -32,10 +32,11 @@ body {
 .main-img {
     width: 300px;
     height: 300px;
-    padding: 25px;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.301);
-    margin: auto;
+    box-shadow: 0 0 3px rgba(41, 39, 39, 0.732);
+    margin: 5px auto;
+    overflow: hidden;
 }
 
 .main-img img {
@@ -52,11 +53,12 @@ body {
 .small-img-col {
     height: 70px;
     width: 50px;
-    margin: 0 15px;
+    margin: 0.5rem 15px;
     padding: 1%;
     border: 1px solid rgb(255 255 255);
     border-radius: 5px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.301);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.575);
+    overflow: hidden;
 }
 
 .small-img {
@@ -78,7 +80,8 @@ body {
 .spro-review-star {
     display: flex;
     flex-direction: row;
-    margin-bottom: 22px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .spro-review-star .stars {
@@ -92,11 +95,12 @@ body {
 .spro-select-specs {
     margin-top: 22px;
     display: flex;
-    gap: 10px;
+    
 }
 
 input[type="radio"] {
     display: none;
+    
 }
 
 .choices {
@@ -106,10 +110,15 @@ input[type="radio"] {
     font-size: 19px;
     justify-content: space-between;
     gap: 10px;
+    
 }
-
+.col-choices{
+    overflow: hidden;
+    height: 6.8rem;
+    margin-bottom: 1rem;
+}
 .col-choices div {
-    margin-bottom: 10px;
+    margin-bottom: 10px;  
 }
 
 .spro-select-specs label {
@@ -140,6 +149,9 @@ input[type="radio"]:checked+label {
 }
 
 @media only screen and (max-width: 900px) {
+    .row{
+        margin-top: 8rem;
+    }
     .col-img {
         align-items: center;
     }
@@ -158,8 +170,12 @@ input[type="radio"]:checked+label {
         gap: 5px;
     }
 }
-
+.spro-specs{
+    margin-bottom: 1.5rem;
+}
 .spro-specs li {
+    margin: 1rem;
+    list-style-type: disc;
     color: rgb(129, 129, 129);
 }
 
@@ -278,12 +294,16 @@ input[type="radio"]:checked+label {
     font-size: 20px;
     outline: 0;
     border: 0;
-    border-bottom: 1px solid rgb(86, 82, 82);
+    padding: 5px;
+    border-bottom:solid 2px rgba(129, 129, 129, 0.441);
 }
 
 #review-form form textarea {
     width: 80%;
     outline: 0;
+    border: solid 2px rgba(129, 129, 129, 0.441);  
+    border-radius: 2px;
+    padding: 5px;
     font-size: 18px;
 }
 

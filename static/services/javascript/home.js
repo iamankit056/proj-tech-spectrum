@@ -39,33 +39,6 @@ document.addEventListener("keydown", function (event) {
     interval = setInterval(nextSlide, 3000);
   }
 });
-//end of carousel code
-  // const carousel = document.querySelector(".carousel");
-  // const slides = carousel.arra.querySelectorAll(".slide");
-
-  // // Set the slide interval in milliseconds
-  // const slideInterval = 3000;
-
-  // // Initialize the current slide index
-  // let currentSlide = 0;
-
-  // // Define a function to move to the next slide
-  // function moveToNextSlide() {
-  //   // Remove the data-active attribute from the current slide
-  //   slides[currentSlide].removeAttribute("data-active");
-
-  //   // Increment the current slide index or reset it to zero if it reaches the end
-  //   currentSlide = (currentSlide + 1) % slides.length;
-
-  //   // Add the data-active attribute to the next slide
-  //   slides[currentSlide].setAttribute("data-active", "");
-
-  //   // No need to update the transform property as the opacity will handle the fade effect
-  // }
-
-  // // Set an interval to call the moveToNextSlide function every slideInterval milliseconds
-  // setInterval(moveToNextSlide, slideInterval);
-// menu in same screen
 function menu() {
   link = document.getElementById("link");
   if (link.style.display === "none") {
