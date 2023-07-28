@@ -1,5 +1,4 @@
-from django.shortcuts import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, HttpResponse
 from django.views import View
 # from django.contrib.auth.models import User
 # from django.contrib.auth import authenticate, login, logout
@@ -9,12 +8,18 @@ from django.contrib import messages
 
 # Create your views here.
 
-class Mylogin(View):
+class MyLogin(View):
     def get(self, request):
         return render(request,'accounts/login.html')
+    
+    def post(self, request):
+        redirect('homepage_url')
    
         
-class register(View):
+class Register(View):
     def get(self, request):
         return render(request,'accounts/register.html')
+    
+    def post(self, request):
+        redirect('login_url')
    
