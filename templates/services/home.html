@@ -1,5 +1,12 @@
-{% extends 'services/base.html' %} {% load static %} {% block title %} Home Page
-{% endblock title %} {% block script%} {% endblock script %} {% block main %}
+{% extends 'services/base.html' %} 
+{% load static %} 
+{% load mathfilters %}
+
+{% block title %}Home Page{% endblock title %} 
+
+{% block script%} {% endblock script %} 
+
+{% block main %}
 <main>
   <div class="carousel">
     <ul>
@@ -20,99 +27,33 @@
     </div>
   </div>
   <section class="product-grid">
-    <div class="product-card">
-      <div class="product-title">Redmi A2</div>
-      <div class="market-details">
-        <ul>
-          <li class="discount">
-            <span>34% off</span>
-          </li>
-          <li class="new">
-            <span>new</span>
-          </li>
-        </ul>
-      </div>
-      <div class="product-info">
-        <div class="product-price">
-          <span>From</span>
-          <strong><small>₹</small>5,499</strong>
-          <del>₹7,999</del>
+    {% for product in products %}
+    <a href="{% url 'product_url' product.id %}">
+      <div class="product-card">
+        <div class="product-title">{{product.name}}</div>
+        <div class="market-details">
+          <ul>
+            <li class="discount">
+              <span>{{product.discount}}% off</span>
+            </li>
+          </ul>
         </div>
-        <div class="product-image">
-          <img src="{% static 'services/images/Product Page/redmi a2.jpg' %}" alt="" />
-        </div>
-      </div>
-    </div>
-    <div class="product-card">
-      <div class="product-title">Redmi A2+</div>
-      <div class="market-details">
-        <ul>
-          <li class="discount">
-            <span>29% off</span>
-          </li>
-          <li class="new">
-            <span>new</span>
-          </li>
-        </ul>
-      </div>
-      <div class="product-info">
-        <div class="product-price">
-          <span>From</span>
-          <strong><small>₹</small>8,499</strong>
-          <del>₹11,999</del>
-        </div>
-        <div class="product-image">
-         <img src="{% static 'services/images/Product Page/redmi a2+.jpg' %}" alt="" />
+        <div class="product-info">
+          <div class="product-price">
+            <span>From</span>
+            <strong><small>₹</small>{{product.new_price}}</strong>
+            <del>₹{{product.old_price}}</del>
+          </div>
+          <div class="product-image">
+            {% if product.image %}
+            <img src="{{product.image.url}}" alt="" />
+            {% endif %}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="product-card">
-      <div class="product-title">Redmi 12C</div>
-      <div class="market-details">
-        <ul>
-          <li class="discount">
-            <span>37% off</span>
-          </li>
-          <li class="new">
-            <span>new</span>
-          </li>
-        </ul>
-      </div>
-      <div class="product-info">
-        <div class="product-price">
-          <span>From</span>
-          <strong><small>₹</small>5,499</strong>
-          <del>₹7,999</del>
-        </div>
-        <div class="product-image">
-          <img src="{% static 'services/images/Product Page/redmi 12c.jpg' %}" alt="" />
-        </div>
-      </div>
-    </div>
-    <div class="product-card">
-      <div class="product-title">Xiaomi Grooming Kit</div>
-      <div class="market-details">
-        <ul>
-          <li class="discount">
-            <span>45% off</span>
-          </li>
-          <li class="new">
-            <span>new</span>
-          </li>
-        </ul>
-      </div>
-      <div class="product-info">
-        <div class="product-price">
-          <span>From</span>
-          <strong><small>₹</small>5,499</strong>
-          <del>₹7,999</del>
-        </div>
-        <div class="product-image">
-          <img src="{% static 'services/images/Product Page/trimmer.jpg' %}" alt="" />
-        </div>
-      </div>
-    </div>
+    </a>
+    {% endfor %}
   </section>
 </main>
-<script src="{% static 'services/javascript/Product Page/home.js' %}"></script>
+<script src="{% static 'services/javascript/home.js' %}"></script>
 {% endblock main %}

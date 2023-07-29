@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,11 +22,11 @@
     <section class="search-drop" id="searchBarContainer">
       <div class="s-close">
         <button class="s-btn" onclick="closesearch()">
-        <i class="fa-solid fa-xmark"></i>
+          <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
       <div class="search-area">
-        <button class="s-btn" >
+        <button class="s-btn">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
         <div class="search-bar">
@@ -37,14 +36,14 @@
     </section>
     <nav class="nav-bar" id="nav-bar">
       <div class="logo">
-        <a href="#">LOGO</a>
+        <a href="{% url 'homepage_url' %}">LOGO</a>
       </div>
       <div class="site-links" id="link">
         <ul>
-          <li><a href="#">Store</a></li>
-          <li><a href="products_list">Phone</a></li>
-          <li><a href="#">TV & LifeStyle</a></li>
-          <li><a href="#">Laptop</a></li>
+          <li><a href="{% url 'homepage_url' %}">Store</a></li>
+          {% for category in categories %}
+          <li><a href="{% url 'products_list_url' category %}">{{category.name}}</a></li>
+          {% endfor %}
         </ul>
       </div>
       <div class="support">
@@ -55,8 +54,12 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
         <button class="sp-btn">
+          <a href="cart/">
           <i class="fa-solid fa-cart-shopping"></i>
-          <span class="badge">1</span>
+          {% if totalItemsInCart %}
+          <span class="badge">{{totalItemsInCart}}</span>
+          {% endif %}
+          </a>
         </button>
         <button class="sp-btn">
           <i class="fa-solid fa-user"></i>
@@ -70,50 +73,50 @@
   <main>{% block main %}{% endblock main %}</main>
   <script>
     var carousel = document.querySelector(".carousel");
-var slides = carousel.querySelectorAll(".slide");
-var activeSlide = carousel.querySelector("[data-active]");
-console.log(slides)
+    var slides = carousel.querySelectorAll(".slide");
+    var activeSlide = carousel.querySelector("[data-active]");
+    console.log(slides)
 
-var activeIndex = Array.prototype.indexOf.call(slides, activeSlide);
-function nextSlide() {
-  activeSlide.removeAttribute("data-active");
-  activeIndex++;
-  if (activeIndex == slides.length) {
-    activeIndex = 0;
-  }
-  activeSlide = slides[activeIndex];
-  activeSlide.setAttribute("data-active", "");
-}
+    var activeIndex = Array.prototype.indexOf.call(slides, activeSlide);
+    function nextSlide() {
+      activeSlide.removeAttribute("data-active");
+      activeIndex++;
+      if (activeIndex == slides.length) {
+        activeIndex = 0;
+      }
+      activeSlide = slides[activeIndex];
+      activeSlide.setAttribute("data-active", "");
+    }
 
-function prevSlide() {
-  activeSlide.removeAttribute("data-active");
-  activeIndex--;
-  if (activeIndex < 0) {
-    activeIndex = slides.length - 1;
-  }
-  activeSlide = slides[activeIndex];
-  activeSlide.setAttribute("data-active", "");
-}
+    function prevSlide() {
+      activeSlide.removeAttribute("data-active");
+      activeIndex--;
+      if (activeIndex < 0) {
+        activeIndex = slides.length - 1;
+      }
+      activeSlide = slides[activeIndex];
+      activeSlide.setAttribute("data-active", "");
+    }
 
-var interval = setInterval(nextSlide, 3000);
-document.addEventListener("keydown", function (event) {
-  if (event.keyCode == 37) {
-    prevSlide();
-    clearInterval(interval);
-    interval = setInterval(nextSlide, 3000);
-  }
+    var interval = setInterval(nextSlide, 3000);
+    document.addEventListener("keydown", function (event) {
+      if (event.keyCode == 37) {
+        prevSlide();
+        clearInterval(interval);
+        interval = setInterval(nextSlide, 3000);
+      }
 
-  if (event.keyCode == 39) {
-    nextSlide();
-    clearInterval(interval);
-    interval = setInterval(nextSlide, 3000);
-  }
-});
+      if (event.keyCode == 39) {
+        nextSlide();
+        clearInterval(interval);
+        interval = setInterval(nextSlide, 3000);
+      }
+    });
     function toggleSearchBar() {
       document.getElementById("searchBarContainer").style.top = "0px"
       document.getElementById("nav-bar").style.display = "none"
     }
-    function closesearch(){
+    function closesearch() {
       document.getElementById("searchBarContainer").style.top = "-200px"
       document.getElementById("nav-bar").style.display = "flex"
     }
