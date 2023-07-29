@@ -1,7 +1,7 @@
 // Start of Carousel code
 var carousel = document.querySelector(".carousel");
-var slides = carousel.querySelectorAll(".slide");
-var activeSlide = carousel.querySelector("[data-active]");
+var slides = document.querySelectorAll(".slide");
+var activeSlide = document.querySelector("[data-active]");
 console.log(slides)
 
 var activeIndex = Array.prototype.indexOf.call(slides, activeSlide);
