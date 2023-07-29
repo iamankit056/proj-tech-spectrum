@@ -1,0 +1,190 @@
+{% extends 'services/base.html' %}
+{% load static %}
+    {% block stylesheet %}<link rel="stylesheet" href="{% static './services/css/cart.css' %}">{% endblock stylesheet %}
+    
+    {% block title %} Realme C55{% endblock title %}
+
+{% block main %}
+<section class="cart">
+        <div class="checkout-wrapper">
+            <div class="ch-title">
+                <h2>Checkout</h2>
+            </div>
+            <div class="ch-stepcnt">
+                <div class="chekout-steps">
+                    <div class="cs-header">
+                        <div class="cs-title">
+                            <h3>1.Shopping Bag (2 Items)</h3>
+                        </div>
+                        <div class="cs-dropdown">
+                            <img src="{% static './services/images/cart Page/arrow-up-svgrepo-com.svg' %}" alt="" onclick="prodropdown()" id="shop-drop-btn">
+                        </div>
+                    </div>
+                    <div id="shop-items">
+                        <div class="cs-item">
+                            <div class="cs-pimg">
+                                <a href="#">
+                                    <img src="{% static './services/images/Product Page/realme c55.jpg' %}" alt="">
+                                </a>
+                            </div>
+                            <div class="cs-pdetails">
+                                <div class="cs-pname">
+                                    <a href="">
+                                        <b>Realme C55 (Rainforest, 64) (4 GB Ram)</b>
+                                    </a>
+                                </div>
+                                <div class="cs-pprice">
+                                    <Strong>₹8,999 <del>₹9,999</del></Strong>
+                                </div>
+                                <div class="cs-pqty">
+                                    <select name="p-qty" id="p-qty">
+                                        <option value="1">Qty: 1</option>
+                                        <option value="2">Qty: 2</option>
+                                        <option value="3">Qty: 3</option>
+                                        <option value="4">Qty: 5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="remove-btn">
+                                <a href="#">
+                                    <img src="{% static './services/images/cart Page/cross-small-svgrepo-com.svg' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cs-item">
+                            <div class="cs-pimg">
+                                <a href="#">
+                                    <img src="{% static './services/images/Product Page/realme c55.jpg' %}" alt="">
+                                </a>
+                            </div>
+                            <div class="cs-pdetails">
+                                <div class="cs-pname">
+                                    <a href="">
+                                        <b>Realme C55 (Rainforest, 64) (4 GB Ram)</b>
+                                    </a>
+                                </div>
+                                <div class="cs-pprice">
+                                    <Strong>₹8,999 <del>₹9,999</del></Strong>
+                                </div>
+                                <div class="cs-pqty">
+                                    <select name="p-qty" id="p-qty">
+                                        <option value="1">Qty: 1</option>
+                                        <option value="2">Qty: 2</option>
+                                        <option value="3">Qty: 3</option>
+                                        <option value="4">Qty: 5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="remove-btn">
+                                <a href="#">
+                                    <img src="{% static './services/images/cart Page/cross-small-svgrepo-com.svg' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chekout-steps">
+                    <div class="cs-header">
+                        <div class="cs-title">
+                            <h3>2.Shipping Details</h3>
+                        </div>
+                        <div class="cs-dropdown">
+                            <img src="{% static './services/images/cart Page/arrow-up-svgrepo-com.svg' %}" alt="" id="ship-drop-btn" onclick="addropdown()">
+                        </div>
+                    </div>
+                    <div id="cs-addresses">
+                        <!-- <div class="cs-noaddress">
+                            Add Address
+                        </div> -->
+                        <div class="cs-exaddress">
+                            <div class="add-name">
+                                <h4>Kaushal Singh</h4>
+                                <p>Home</p>
+                            </div>
+                            <div class="address-details">
+                                <span>111, New Baradwari,</span>
+                                <br>
+                                <br>
+                                <span>Durga Puja Maidan,</span>
+                                <br>
+                                <br>
+                                <span>East Singhbhum, Jharkand, 831001</span>
+                            </div>
+                            <div class="delivery-box">
+                                <div class="d-csphone">
+                                    <span>Phone no: </span>
+                                    <span>8825xxxxxx</span>
+                                </div>
+                                <div class="fr-delivery">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span>Expected delivery within 10 business days.</span>
+                                </div>
+                            </div>
+                            <div class="dh-addedit">
+                                <div class="add-edit">Add/Edit Address</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-summary">
+            <div class="os-title">
+                <h3>Order Summmary (2 Items)</h3>
+            </div>
+            <div class="os-body">
+                <div class="o-des">
+                    <p>Order Value</p>
+                    <p>Product Discount</p>
+                    <p>Shipping</p>
+                </div>
+                <div class="o-val">
+                    <p id="list-price">₹ 19,998</p>
+                    <p id="discount">-₹ 2,000</p>
+                    <p>FREE</p>
+                </div>
+            </div>
+            <hr>
+            <div class="os-total">
+                <div class="o-tot">
+                    <p>Order Total</p>
+                </div>
+                <div class="tot-price">
+                    <p id="total-price">₹ 17,998</p>
+                </div>
+            </div> 
+            <a href="">
+            <div class="ord-btn">
+                Order Now
+            </div>
+            </a>
+        </div>
+    </section>
+    <script>
+        var p = 0, a = 0, s = 0
+        function prodropdown() {
+            if (p == 0) {
+                document.getElementById("shop-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
+                document.getElementById("shop-items").style.display = "none"
+                p++
+            }
+            else {
+                document.getElementById("shop-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
+                document.getElementById("shop-items").style.display = "block"
+                p--
+            }
+        }
+        function addropdown() {
+            if (a == 0) {
+                document.getElementById("ship-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
+                document.getElementById("cs-addresses").style.display = "none"
+                a++
+            }
+            else {
+                document.getElementById("ship-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
+                document.getElementById("cs-addresses").style.display = "block"
+                a--
+            }
+        }
+    </script>
+{% endblock main %}

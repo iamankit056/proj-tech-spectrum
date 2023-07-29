@@ -76,3 +76,7 @@ class ProductPage(View):
             },
         }
         return render(request, 'services/product.html', context=context)
+
+class Cart(View):
+    def get(self, request):
+        return render(request, 'services/cart.html')
