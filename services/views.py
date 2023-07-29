@@ -6,8 +6,16 @@ from .models import (
     ProductImage,
     ProductDescription
 )
+from cart.models import Cart
 
 # Create your views here.
+def CountItemsInCart(request):
+    try: 
+        return len(Cart.objects.filter(user=request.user))
+    except:
+        return None
+
+
 class HomePage(View):
     def get(self, request):
         categories = Category.objects.all()
@@ -25,6 +33,7 @@ class HomePage(View):
         context = {
             'categories': categories,
             'products': products,
+            'totalItemsInCart': CountItemsInCart(request)
         }
         return render(request,'services/home.html', context=context)
     
@@ -47,6 +56,7 @@ class ProductsListPage(View):
             'categories': categories,
             'products': products,
             'category': category,
+            'totalItemsInCart': CountItemsInCart(request)
         }
         return render(request,'services/products.html', context=context)
 
@@ -74,5 +84,6 @@ class ProductPage(View):
                 'images': ProductImage.objects.filter(product=product),
                 'descriptions': ProductDescription.objects.filter(product=product)
             },
+            'totalItemsInCart': CountItemsInCart(request)
         }
         return render(request, 'services/product.html', context=context)

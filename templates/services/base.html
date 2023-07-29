@@ -55,7 +55,9 @@
         </button>
         <button class="sp-btn">
           <i class="fa-solid fa-cart-shopping"></i>
-          <span class="badge">1</span>
+          {% if totalItemsInCart %}
+          <span class="badge">{{totalItemsInCart}}</span>
+          {% endif %}
         </button>
         <button class="sp-btn">
           <i class="fa-solid fa-user"></i>

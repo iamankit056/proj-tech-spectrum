@@ -13,14 +13,17 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'price', 'discount', 'category')
+    ordering = ['id']
 
 
 class ProductImageAdmin(admin.ModelAdmin):
     list_display = ('id', 'product', 'image')
+    ordering = ['id']
 
 
 class ProductDescriptionAdmin(admin.ModelAdmin):
     list_display = ('id', 'product', 'description')
+    ordering = ['id']
 
 
 admin.site.register(Category, CategoryAdmin)
