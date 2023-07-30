@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'accounts/register.css' %}">
   </head>
   <body>
-    <form action=" {% url'register' %} " method="POST">
+    <form action="{% url 'register_url'%} " method="POST">
         <div class="signup">
           <H1> SIGNUP! </H1>
         <div id="f1">
@@ -19,7 +19,7 @@
           <input type="password" class="inp" name="Password" placeholder=" Password " required /><br /><br />
           <input type="password" class="inp" name="Conformpassword" placeholder=" Conformpassword " required /><br /><br />
           <input type="button" class="button" value="SIGNUP" /><br><br />
-            I already have an account <a href="Mylogin">login</a><br><br>
+            I already have an account <a href="login">login</a><br><br>
         </div>
       </div>
     </form>
