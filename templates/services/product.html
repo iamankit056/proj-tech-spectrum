@@ -44,7 +44,7 @@
                     </ul>
                 </div>
                 <div class="buy-cart">
-                    <div class="cart"><a href=""><i class="fa-solid fa-cart-shopping"></i>Add to Cart</a></div>
+                    <div class="cart"><a href="{% url 'add_to_cart_url' product.id %}"><i class="fa-solid fa-cart-shopping"></i>Add to Cart</a></div>
                     <div class="buy"><a href=""><i class="fa-solid fa-bolt-lightning"></i>Buy Now</a></div>
                 </div>
             </div>
