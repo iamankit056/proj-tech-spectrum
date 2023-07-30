@@ -13,14 +13,36 @@ class MyLogin(View):
         return render(request,'accounts/login.html')
     
     def POST(self, request):
+         if request.method == "POST":
+            username = request.POST["username"]
+            email = request.POST["email"]
+            password1 = request.POST["passw1"]
+            confirmpassword = request.POST["passw2"]
 
-        redirect('homepage_url')
+            try:
+                user = User.objects.get(username=username)
+                messages.error(request, f'{username} already taken')
+                return redirect('signup_url')
+            except:
+                pass
+
+            if(password1 != confirmpassword):
+                messages.warning(request, "Passwords does not match")
+                return redirect('signup_url')
+
+            user = User.objects.create_user(username=username, password=password1, email=email)
+            user.save()
+            profile = Profile(user=user)
+            profile.save()
+            messages.success(request, f"Account created successfull for {username}")
+            redirect('homepage_url')
    
         
 class Register(View):
     def get(self, request):
         return render(request,'accounts/register.html') 
-    def post(self, request):
+    
+    def POST(self, request):
         if request.method=="POST": 
             firstname = request.POST["firstname"]
             lastname = request.POST["lastname"]
