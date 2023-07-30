@@ -90,4 +90,4 @@ class ProductPage(View):
 
 class Cart(View):
     def get(self, request):
-        return render(request, 'services/cart.html')
+        return render(request, 'cart/cart.html')

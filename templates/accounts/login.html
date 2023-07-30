@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="{% static 'accounts/login.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/login.css' %}">
 {% endblock stylesheet %}
 
-{% block title %}Home Page{% endblock title %} 
+{% block title %}Home Page{% endblock title %}
 
 {% block main %}
 <div class="signup">
@@ -13,15 +13,28 @@
     {% csrf_token %}
     <H1> Login </H1>
     {% for message in messages %}
-    <p{% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</p>
-    {% endfor %}
-    <div id="f1">
-      <input type="text" class=" inp" name="username" placeholder="username" required=""/><br><br>
-      <input type="password" class="inp" name="password" placeholder="Password" required /><br /><br />
-      <a href="#">Forget Password</a><br><br>
-      <button type="submit" class="button" >Login</button><br><br />
-        Create an account <a href="{% url 'register_url' %}">Sign up</a><br><br>
-    </div>
+    <p{% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+      {% endfor %}
+      <div id="f1">
+        <label for="username">
+          <p>Username</p>
+        </label>
+        <input type="text" class=" inp" name="username" placeholder="Type your username" required="" /><br><br>
+        <label for="password">
+          <p>Password</p>
+        </label>
+        <input type="password" class="inp" name="password" placeholder="Type your password" required />
+        <div class="for-pass">
+          <a href="#">Forget Password?</a>
+        </div>
+        <button type="submit" class="button">Login</button>
+        <div class="cr-signin">
+          <span>Create an account?</span>
+          <div class="sig-btn">
+            <a href="{% url 'register_url' %}">Sign up</a>
+          </div>
+        </div>
+      </div>
   </form>
 </div>
 {% endblock %}

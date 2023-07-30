@@ -16,14 +16,14 @@
     <p{% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</p>
     {% endfor %}
     <div id="f1">
-      <input type="text" class=" inp2" name="firstname" value="{{firstname}}" placeholder=" First Name " required=""/>
-      <input type="text" class=" inp2" name="lastname" value="{{lastname}}" placeholder=" Last Name "/><br /><br />
-      <input type="username" class="inp" name="username" value="{{username}}" placeholder="Username" required /><br /><br />
-      <input type="email" class="inp" name="email" value="{{email}}" placeholder=" E-mail " required /><br /><br />
-      <input type="password" class="inp" name="password" value="{{password}}" placeholder=" Password " required /><br /><br />
-      <input type="password" class="inp" name="confirmPassword" value="{{confirmPassword}}" placeholder=" Confirm Password" required /><br /><br />
+      <input type="text"  name="firstname" value="{{firstname}}" placeholder=" First Name " required=""/>
+      <input type="text"  name="lastname" value="{{lastname}}" placeholder=" Last Name "/>
+      <input type="username" name="username" value="{{username}}" placeholder="Username" required />
+      <input type="email" name="email" value="{{email}}" placeholder=" E-mail " required />
+      <input type="password" name="password" value="{{password}}" placeholder=" Password " required />
+      <input type="password"  name="confirmPassword" value="{{confirmPassword}}" placeholder=" Confirm Password" required />
       <button class="button" type="submit" >Sign up</button><br><br />
-        I already have an account <a href="{% url 'login_url' %}">Login</a><br><br>
+        I already have an account? <a href="{% url 'login_url' %}">Login</a><br><br>
     </div>
   </form>
 </div>
