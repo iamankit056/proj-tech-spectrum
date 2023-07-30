@@ -61,8 +61,13 @@
           {% endif %}
           </a>
         </button>
-        <button class="sp-btn">
+        <button class="sp-btn usr" onclick="usrdrop()">
           <i class="fa-solid fa-user"></i>
+          <div class="usr-dropdown" id="u-drop">
+            <a href=""><div class="login-btn">Login</div></a>
+            <hr>
+            <a href=""><div class="signup-btn">Signin</div></a>
+          </div>
         </button>
         <button class="sp-btn" id="bar" onclick="menu()">
           <i class="fa-solid fa-bars"></i>
@@ -119,6 +124,17 @@
     function closesearch() {
       document.getElementById("searchBarContainer").style.top = "-200px"
       document.getElementById("nav-bar").style.display = "flex"
+    }
+    var i=0;
+    function usrdrop(){
+      if(i==0){
+        document.getElementById("u-drop").style.display="flex";
+        i++;
+      }
+      else{
+        document.getElementById("u-drop").style.display = "none";
+        i--;
+      }
     }
   </script>
 </body>
