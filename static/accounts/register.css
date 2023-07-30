@@ -65,7 +65,9 @@
   -webkit-background-clip: text;
   border-color: rgb(0, 187, 255);
 }
-
+.lg-link{
+  font-size: 1.6rem;
+}
 .lg-link a:hover {
   background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
   -webkit-text-fill-color: transparent;
