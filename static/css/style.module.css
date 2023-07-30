@@ -1,0 +1,12 @@
+/* message */
+.error {
+    color: #f00;
+}
+
+.success {
+    color: #0f0;
+}
+
+.warning {
+    color: #0f0;
+}
