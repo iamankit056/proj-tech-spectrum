@@ -1,8 +1,12 @@
-{% extends 'services/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
-{% csrf_token %}
-{% block stylesheet %}<link rel="stylesheet" href="{% static 'services/css/products-list.css' %}" />{% endblock stylesheet%}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'services/css/products-list.css' %}" />
+{% endblock stylesheet%}
+
 {% block title %}{{category}}s{% endblock title %}
+
 {% block main %}
 <div class="fillter-bar">
     <h2 class="product-title">{{category}}s</h2>

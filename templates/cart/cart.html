@@ -1,8 +1,11 @@
-{% extends 'services/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
-    {% block stylesheet %}<link rel="stylesheet" href="{% static './services/css/cart.css' %}">{% endblock stylesheet %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static './services/css/cart.css' %}">
+{% endblock stylesheet %}
     
-    {% block title %} Cart{% endblock title %}
+{% block title %}Cart{% endblock title %}
 
 {% block main %}
 <section class="cart">

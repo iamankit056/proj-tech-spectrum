@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse
 from django.views import View
 from .models import Cart
 from services.models import Product
@@ -29,3 +29,8 @@ class AddProductToCart(View):
             cart_item.quentity += 1
             cart_item.save()
         return redirect('product_url', product_id)
+    
+
+class ShowUserCartItems(View):
+    def get(self, request, user_id):
+        return render(request, 'cart/cart.html')
