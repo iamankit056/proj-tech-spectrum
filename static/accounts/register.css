@@ -14,6 +14,7 @@
   border-radius: 5px;
 
 }
+
 .signup h1 {
   text-align: center;
   font-size: 3rem;
@@ -23,6 +24,7 @@
   text-transform: uppercase;
   margin: 1.2rem auto 2rem;
 }
+
 .signup form a {
   font-size: 1.6rem;
   text-decoration: none;
@@ -33,6 +35,7 @@
   display: flex;
   flex-direction: column;
 }
+
 #f1 input {
   font-size: 1.8rem;
   outline: none;
@@ -41,18 +44,30 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.136);
   margin: 1.3rem auto;
 }
+
 .button {
-  background-color: dodgerblue;
-  color: white;
-  padding: 10px 20px;
-  margin: 3px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
   width: 70%;
+  padding: 10px 8px;
+  margin-top: 1.5rem;
+  margin-left: 5rem;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  border: 2px solid rgb(255, 255, 255);
+  text-transform: uppercase;
+  background-image: linear-gradient(45deg, rgb(5, 247, 243), rgb(10, 130, 229));
 }
 
 .button:hover {
-  background-color: royalblue;
+  background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  border-color: rgb(0, 187, 255);
+}
+
+.lg-link a:hover {
+  background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }

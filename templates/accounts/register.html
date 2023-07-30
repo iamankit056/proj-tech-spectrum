@@ -2,29 +2,32 @@
 {% load static %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="{% static 'accounts/register.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/register.css' %}">
 {% endblock stylesheet %}
 
-{% block title %}Sign up{% endblock title %} 
+{% block title %}Sign up{% endblock title %}
 
 {% block main %}
 <div class="signup">
   <form action="{% url 'register_url'%} " method="POST">
-  {% csrf_token %}
+    {% csrf_token %}
     <H1> Sign up </H1>
     {% for message in messages %}
-    <p{% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</p>
-    {% endfor %}
-    <div id="f1">
-      <input type="text"  name="firstname" value="{{firstname}}" placeholder=" First Name " required=""/>
-      <input type="text"  name="lastname" value="{{lastname}}" placeholder=" Last Name "/>
-      <input type="username" name="username" value="{{username}}" placeholder="Username" required />
-      <input type="email" name="email" value="{{email}}" placeholder=" E-mail " required />
-      <input type="password" name="password" value="{{password}}" placeholder=" Password " required />
-      <input type="password"  name="confirmPassword" value="{{confirmPassword}}" placeholder=" Confirm Password" required />
-      <button class="button" type="submit" >Sign up</button><br><br />
-        I already have an account? <a href="{% url 'login_url' %}">Login</a><br><br>
-    </div>
+    <p{% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
+      {% endfor %}
+      <div id="f1">
+        <input type="text" name="firstname" value="{{firstname}}" placeholder=" First Name " required="" />
+        <input type="text" name="lastname" value="{{lastname}}" placeholder=" Last Name " />
+        <input type="username" name="username" value="{{username}}" placeholder=" Username" required />
+        <input type="email" name="email" value="{{email}}" placeholder=" E-mail " required />
+        <input type="password" name="password" value="{{password}}" placeholder=" Password " required />
+        <input type="password" name="confirmPassword" value="{{confirmPassword}}" placeholder=" Confirm Password"
+          required />
+        <button class="button" type="submit">Sign up</button>
+        <div class="lg-link">
+          I already have an account? <a href="{% url 'login_url' %}">Login</a>
+        </div>
+      </div>
   </form>
 </div>
 {% endblock %}
