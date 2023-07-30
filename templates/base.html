@@ -65,9 +65,15 @@
         <button class="sp-btn usr" onclick="usrdrop()">
           <i class="fa-solid fa-user"></i>
           <div class="usr-dropdown" id="u-drop">
-            <a href=""><div class="login-btn">Login</div></a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile_url' %}"><div class="login-btn">Profile</div></a>
             <hr>
-            <a href=""><div class="signup-btn">Signin</div></a>
+            <a href="{% url 'logout_url' %}"><div class="signup-btn">logout</div></a>
+            {% else %}
+            <a href="{% url 'login_url' %}"><div class="login-btn">Login</div></a>
+            <hr>
+            <a href="{% url 'register_url' %}"><div class="signup-btn">Signin</div></a>
+            {% endif %}
           </div>
         </button>
         <button class="sp-btn" id="bar" onclick="menu()">

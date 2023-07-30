@@ -9,7 +9,7 @@ from services.models import Category
 
 # Create your views here.
 
-class MyLogin(View):
+class Login(View):
     def get(self, request):
         context = {
             'categories': Category.objects.all()
@@ -96,4 +96,14 @@ class Register(View):
             messages.success(request, f"Account created successfull for ")
             return redirect('login_url')
         
-   
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return redirect('homepage_url')
+    
+
+    
+class Profile(View):
+    def get(self, request):
+        return HttpResponse('<h1>Profile Page</h1>')
