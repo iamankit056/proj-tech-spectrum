@@ -32,8 +32,8 @@ class MyLogin(View):
 
             user = User.objects.create_user(username=username, password=password1, email=email)
             user.save()
-            profile = Profile(user=user)
-            profile.save()
+            # profile = Profile(user=user)
+            # profile.save()
             messages.success(request, f"Account created successfull for {username}")
             redirect('homepage_url')
    
