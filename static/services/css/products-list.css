@@ -2,7 +2,6 @@
     margin: 8rem auto 2rem;
     display: flex;
     flex-direction: column;
-    background-color: rgb(242, 250, 253);
 }
 
 .product-title {
@@ -69,8 +68,7 @@ input[type="radio"].fillter:checked+select {
 }
 
 .pro-card {
-    margin: auto;
-    margin-bottom: 2rem;
+    margin: 2rem auto;
     padding: 5px;
     width: 95%;
     background-color: rgb(255, 255, 255);
@@ -81,7 +79,10 @@ input[type="radio"].fillter:checked+select {
     display: flex;
     flex-direction: row;
 }
-
+.product-grid{
+    height: max-content;
+    overflow: hidden;
+}
 .pro-details {
     margin: 15px 20px;
     font-size: 14px;

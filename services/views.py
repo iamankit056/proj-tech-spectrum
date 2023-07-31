@@ -27,7 +27,7 @@ class HomePage(View):
                 'name': product.name,
                 'discount': product.discount,
                 'old_price': product.price,
-                'new_price': product.price*(100-product.discount)/100,
+                'new_price': int(product.price*(100-product.discount)/100),
                 'image': product_images[0].image if len(product_images) else None
             })
         context = {
@@ -49,7 +49,7 @@ class ProductsListPage(View):
                 'name': product.name,
                 'discount': product.discount,
                 'old_price': product.price,
-                'new_price': product.price*(100-product.discount)/100,
+                'new_price': int(product.price*(100-product.discount)/100),
                 'image': product_images[0].image if len(product_images) else None
             })
         context = {
@@ -80,7 +80,7 @@ class ProductPage(View):
                 'name': product.name,
                 'discount': product.discount,
                 'old_price': product.price,
-                'new_price': product.price*(100-product.discount)/100,
+                'new_price':int( product.price*(100-product.discount)/100),
                 'images': ProductImage.objects.filter(product=product),
                 'descriptions': ProductDescription.objects.filter(product=product)
             },

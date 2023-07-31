@@ -153,6 +153,9 @@ header {
 }
 
 @media (min-width: 900px) {
+    .nav-bar{
+        font-size: 8px;
+    }
     .site-links {
         margin-left: 2rem;
         margin-right: 2rem;
@@ -532,11 +535,12 @@ header {
 }
 
 .product-price strong {
-    font-size: 1.8rem;
+   margin: 5px 0;
     font-weight: bold;
 }
 
 .product-price del {
+    font-size: 1.6rem;
     color: rgb(92, 92, 92);
     text-decoration-line: line-through;
 }
