@@ -68,7 +68,7 @@
             {% if user.is_authenticated %}
             <a href="{% url 'profile_url' %}"><div class="login-btn">Profile</div></a>
             <hr>
-            <a href="{% url 'logout_url' %}"><div class="signup-btn">logout</div></a>
+            <a href="{% url 'logout_url' %}"><div class="signup-btn">Log out</div></a>
             {% else %}
             <a href="{% url 'login_url' %}"><div class="login-btn">Login</div></a>
             <hr>

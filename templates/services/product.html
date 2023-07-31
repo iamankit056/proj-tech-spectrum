@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static './services/css/sproduct.css' %}">
 {% endblock stylesheet %}
 
-{% block title %} Realme C55{% endblock title %}
+{% block title %} {{product.name}}{% endblock title %}
 
 {% block main %}
 <section class="sproduct">
@@ -32,8 +32,7 @@
             <div class="spro-price">
                 <div class="spro-pr-details">
                     <strong>
-                        <small>₹</small>
-                        {{product.new_price}}.00
+                        <small>₹</small>{{product.new_price}}.00
                     </strong>
                     <del>
                         ₹{{product.old_price}}

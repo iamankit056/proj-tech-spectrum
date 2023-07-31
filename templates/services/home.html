@@ -1,9 +1,9 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Home Page{% endblock title %} 
+{% block title %}Home Page{% endblock title %}
 
-{% block script%} {% endblock script %} 
+{% block script%} {% endblock script %}
 
 {% block main %}
 <main>
@@ -22,7 +22,42 @@
   </div>
   <div class="new-arrivals">
     <div class="banner-new">
-      <img src="{% static 'services/images/Home Page/banner.jpg' %}" alt="" />
+      <img src="{% static 'services/images/Home Page/deal of the day.jpg' %}" alt="" />
+    </div>
+  </div>
+  <section class="product-grid">
+    {% for product in products %}
+    {% if product.discount >= 25 %}
+    <a href="{% url 'product_url' product.id %}">
+      <div class="product-card">
+        <div class="product-title">{{product.name}}</div>
+        <div class="market-details">
+          <ul>
+            <li class="discount">
+              <span>{{product.discount}}% off</span>
+            </li>
+          </ul>
+        </div>
+        <div class="product-info">
+          <div class="product-price">
+            <span>From</span>
+            <strong><small>₹</small>{{product.new_price}}.00</strong>
+            <del>₹{{product.old_price}}</del>
+          </div>
+          <div class="product-image">
+            {% if product.image %}
+            <img src="{{product.image.url}}" alt="" />
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endif %}
+    {% endfor %}
+  </section>
+  <div class="best-sl-phone">
+    <div class="banner-new">
+      <img src="{% static 'services/images/Home Page/best seller.jpg' %}" alt="">
     </div>
   </div>
   <section class="product-grid">
@@ -40,7 +75,7 @@
         <div class="product-info">
           <div class="product-price">
             <span>From</span>
-            <strong><small>₹</small>{{product.new_price}}</strong>
+            <strong><small>₹</small>{{product.new_price}}.00</strong>
             <del>₹{{product.old_price}}</del>
           </div>
           <div class="product-image">
@@ -56,54 +91,54 @@
 </main>
 <script>
   // Start of Carousel code
-var carousel = document.querySelector(".carousel");
-var slides = document.querySelectorAll(".slide");
-var activeSlide = document.querySelector("[data-active]");
-console.log(slides)
+  var carousel = document.querySelector(".carousel");
+  var slides = document.querySelectorAll(".slide");
+  var activeSlide = document.querySelector("[data-active]");
+  console.log(slides)
 
-var activeIndex = Array.prototype.indexOf.call(slides, activeSlide);
-function nextSlide() {
-  activeSlide.removeAttribute("data-active");
-  activeIndex++;
-  if (activeIndex == slides.length) {
-    activeIndex = 0;
-  }
-  activeSlide = slides[activeIndex];
-  activeSlide.setAttribute("data-active", "");
-}
-
-function prevSlide() {
-  activeSlide.removeAttribute("data-active");
-  activeIndex--;
-  if (activeIndex < 0) {
-    activeIndex = slides.length - 1;
-  }
-  activeSlide = slides[activeIndex];
-  activeSlide.setAttribute("data-active", "");
-}
-
-var interval = setInterval(nextSlide, 10000);
-document.addEventListener("keydown", function (event) {
-  if (event.keyCode == 37) {
-    prevSlide();
-    clearInterval(interval);
-    interval = setInterval(nextSlide, 10000);
+  var activeIndex = Array.prototype.indexOf.call(slides, activeSlide);
+  function nextSlide() {
+    activeSlide.removeAttribute("data-active");
+    activeIndex++;
+    if (activeIndex == slides.length) {
+      activeIndex = 0;
+    }
+    activeSlide = slides[activeIndex];
+    activeSlide.setAttribute("data-active", "");
   }
 
-  if (event.keyCode == 39) {
-    nextSlide();
-    clearInterval(interval);
-    interval = setInterval(nextSlide, 10000);
+  function prevSlide() {
+    activeSlide.removeAttribute("data-active");
+    activeIndex--;
+    if (activeIndex < 0) {
+      activeIndex = slides.length - 1;
+    }
+    activeSlide = slides[activeIndex];
+    activeSlide.setAttribute("data-active", "");
   }
-});
-function menu() {
-  link = document.getElementById("link");
-  if (link.style.display === "none") {
-    link.style.display = "block";
-  } else {
-    link.style.display = "none";
+
+  var interval = setInterval(nextSlide, 10000);
+  document.addEventListener("keydown", function (event) {
+    if (event.keyCode == 37) {
+      prevSlide();
+      clearInterval(interval);
+      interval = setInterval(nextSlide, 10000);
+    }
+
+    if (event.keyCode == 39) {
+      nextSlide();
+      clearInterval(interval);
+      interval = setInterval(nextSlide, 10000);
+    }
+  });
+  function menu() {
+    link = document.getElementById("link");
+    if (link.style.display === "none") {
+      link.style.display = "block";
+    } else {
+      link.style.display = "none";
+    }
   }
-}
 
 </script>
 {% endblock main %}

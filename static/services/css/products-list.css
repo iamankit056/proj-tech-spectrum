@@ -79,10 +79,17 @@ input[type="radio"].fillter:checked+select {
     display: flex;
     flex-direction: row;
 }
-.product-grid{
+
+.pro-card:hover {
+    outline: 3px solid rgba(0, 0, 0, 0.225);
+    outline-offset: -3px;
+}
+
+.product-grid {
     height: max-content;
     overflow: hidden;
 }
+
 .pro-details {
     margin: 15px 20px;
     font-size: 14px;

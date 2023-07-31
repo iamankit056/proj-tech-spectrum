@@ -416,7 +416,7 @@ header {
     }
 }
 
-.new-arrivals {
+.new-arrivals, .best-sl-phone {
     width: 95%;
     margin: auto;
     height: 28%;
@@ -424,11 +424,13 @@ header {
 
 .banner-new {
     width: 100%;
+    height: 25vh;
     overflow: hidden;
 }
 
 .banner-new>img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
 }
@@ -442,6 +444,7 @@ header {
     grid-gap: 1%;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .product-grid a {
@@ -449,7 +452,7 @@ header {
 }
 
 .product-card {
-    margin: auto;
+    margin: 1rem auto;
     height: 88%;
     background-color: rgb(255, 255, 255);
     border: 1px solid #ccc;
@@ -458,8 +461,12 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    transition: 8ms
 }
-
+.product-card:hover{
+    outline: 3px solid rgba(0, 0, 0, 0.225);
+    outline-offset: -3px;
+}
 .product-card:hover .product-title {
     background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
     -webkit-text-fill-color: transparent;

@@ -28,7 +28,8 @@ class HomePage(View):
                 'discount': product.discount,
                 'old_price': product.price,
                 'new_price': int(product.price*(100-product.discount)/100),
-                'image': product_images[0].image if len(product_images) else None
+                'image': product_images[0].image if len(product_images) else None,
+                'category':product.category,
             })
         context = {
             'categories': categories,
