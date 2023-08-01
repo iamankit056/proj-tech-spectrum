@@ -1,45 +1,42 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block stylesheet %}
+{% extends 'base.html' %} {% load static %} {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'services/css/products-list.css' %}" />
-{% endblock stylesheet%}
-{% block title %} Search for {{searched}} {% endblock title %}
+{% endblock stylesheet%} 
+{% block title %} Search for {{searched}} 
+{% endblock title %} 
 {% block main %}
-{% if searched %}
-<h1 style="margin-top: 100px;"> You Searched For {{searched}}</h1>
-{% else %}
-<h1 style="margin-top: 100px;"> Your Search for {{searched}} doesn't exist</h1>
-{% endif %}
+{% if searched%}
+<h1 style="margin-top: 100px">You Searched For {{searched}}</h1>
 <section class="product-grid">
-    {% for product in products %}
-    <a href="{% url 'product_url' product.id %}">
-        <div class="pro-card">
-            <div class="product-img">
-                {% if product.image %}
-                <img src="{{product.image.url}}" alt="" />
-                {% endif %}
-            </div>
-            <div class="pro-details">
-                <p class="pro-title">{{product.name}}</p>
-                <div class="mar-details">
-                    <ul>
-                        <li class="discount">
-                            <span>{{product.discount}}% off</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="pro-price">
-                    <strong>
-                        <small>
-                            ₹
-                        </small>
-                        {{product.new_price}}.00
-                    </strong>
-                    <del>₹{{product.old_price}}</del>
-                </div>
-            </div>
+  {% for product in products %}
+  <a href="{% url 'product_url' product.id %}">
+    <div class="pro-card">
+      <div class="product-img">
+        {% if product.image %}
+        <img src="{{product.image.url}}" alt="" />
+        {% endif %}
+      </div>
+      <div class="pro-details">
+        <p class="pro-title">{{product.name}}</p>
+        <div class="mar-details">
+          <ul>
+            <li class="discount">
+              <span>{{product.discount}}% off</span>
+            </li>
+          </ul>
         </div>
-    </a>
-    {% endfor %}
+        <div class="pro-price">
+          <strong>
+            <small> ₹ </small>
+            {{product.new_price}}.00
+          </strong>
+          <br />
+          <del>₹{{product.old_price}}</del>
+        </div>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
 </section>
-{% endblock main%}
+{% else %}
+<h1 style="margin-top: 100px">Your Search for {{searched}} doesn't exist</h1>
+{% endif %} {% endblock main%}

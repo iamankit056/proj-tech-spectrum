@@ -97,11 +97,26 @@ class Cart(View):
 
 def Search(request):
         if request.method == "POST":
+            categories = Category.objects.all()
             searched = request.POST["searched"]
-            products = Product.objects.filter(name__contains=searched)
-            # if Product.objects.filter(name__isnull=False):
-            #     products = Category.objects.filter(name__contains=searched)
-                
-            return render(request, "services/search.html", {"searched": searched, "products":products})
+            products=[]
+            for product in Product.objects.filter(name__contains=searched):
+                product_images = ProductImage.objects.filter(product=product)
+                products.append(
+                    {
+                    "id": product.id,
+                    "name": product.name,
+                    "discount": product.discount,
+                    "old_price": product.price,
+                    "new_price": int(product.price * (100 - product.discount) / 100),
+                    "image": product_images[0].image if len(product_images) else None,
+                    }
+                )
+            context = {
+            "categories": categories,
+            "products": products,
+            "searched":searched
+        }
+            return render(request, "services/search.html", context=context)
         else:
             return render(request, "services/search.html", {})
