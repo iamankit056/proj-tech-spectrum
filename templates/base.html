@@ -1,6 +1,8 @@
 {% load static %}
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,13 +28,16 @@
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
+      <form method="post" action="{% url 'search_url' %}">
       <div class="search-area">
-        <button class="s-btn">
-          <i class="fa-solid fa-magnifying-glass"></i>
+        {% csrf_token %}
+        <button class="s-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
         </button>
         <div class="search-bar">
-          <input type="search" name="" id="searchbar">
+          <input type="search" name="searched" id="searchbar">
         </div>
+        </form>
       </div>
     </section>
     <nav class="nav-bar" id="nav-bar">
@@ -56,23 +61,31 @@
         </button>
         <button class="sp-btn">
           <a href="cart/">
-          <i class="fa-solid fa-cart-shopping"></i>
-          {% if totalItemsInCart %}
-          <span class="badge">{{totalItemsInCart}}</span>
-          {% endif %}
+            <i class="fa-solid fa-cart-shopping"></i>
+            {% if totalItemsInCart %}
+            <span class="badge">{{totalItemsInCart}}</span>
+            {% endif %}
           </a>
         </button>
         <button class="sp-btn usr" onclick="usrdrop()">
           <i class="fa-solid fa-user"></i>
           <div class="usr-dropdown" id="u-drop">
             {% if user.is_authenticated %}
-            <a href="{% url 'profile_url' %}"><div class="login-btn">Profile</div></a>
+            <a href="{% url 'profile_url' %}">
+              <div class="login-btn">Profile</div>
+            </a>
             <hr>
-            <a href="{% url 'logout_url' %}"><div class="signup-btn">Log out</div></a>
+            <a href="{% url 'logout_url' %}">
+              <div class="signup-btn">Log out</div>
+            </a>
             {% else %}
-            <a href="{% url 'login_url' %}"><div class="login-btn">Login</div></a>
+            <a href="{% url 'login_url' %}">
+              <div class="login-btn">Login</div>
+            </a>
             <hr>
-            <a href="{% url 'register_url' %}"><div class="signup-btn">Sign up</div></a>
+            <a href="{% url 'register_url' %}">
+              <div class="signup-btn">Sign up</div>
+            </a>
             {% endif %}
           </div>
         </button>
@@ -127,18 +140,19 @@
     function toggleSearchBar() {
       document.getElementById("searchBarContainer").style.top = "0px"
       document.getElementById("nav-bar").style.display = "none"
+      window.scrollBy(0, -100000)
     }
     function closesearch() {
       document.getElementById("searchBarContainer").style.top = "-200px"
       document.getElementById("nav-bar").style.display = "flex"
     }
-    var i=0;
-    function usrdrop(){
-      if(i==0){
-        document.getElementById("u-drop").style.display="flex";
+    var i = 0;
+    function usrdrop() {
+      if (i == 0) {
+        document.getElementById("u-drop").style.display = "flex";
         i++;
       }
-      else{
+      else {
         document.getElementById("u-drop").style.display = "none";
         i--;
       }

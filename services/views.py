@@ -1,16 +1,12 @@
 from django.shortcuts import render, HttpResponse
 from django.views import View
-from .models import (
-    Category,
-    Product,
-    ProductImage,
-    ProductDescription
-)
+from .models import Category, Product, ProductImage, ProductDescription
 from cart.models import Cart
+
 
 # Create your views here.
 def CountItemsInCart(request):
-    try: 
+    try:
         return len(Cart.objects.filter(user=request.user))
     except:
         return None
@@ -22,22 +18,24 @@ class HomePage(View):
         products = []
         for product in Product.objects.all():
             product_images = ProductImage.objects.filter(product=product)
-            products.append({
-                'id': product.id,
-                'name': product.name,
-                'discount': product.discount,
-                'old_price': product.price,
-                'new_price': int(product.price*(100-product.discount)/100),
-                'image': product_images[0].image if len(product_images) else None,
-                'category':product.category,
-            })
+            products.append(
+                {
+                    "id": product.id,
+                    "name": product.name,
+                    "discount": product.discount,
+                    "old_price": product.price,
+                    "new_price": int(product.price * (100 - product.discount) / 100),
+                    "image": product_images[0].image if len(product_images) else None,
+                    "category": product.category,
+                }
+            )
         context = {
-            'categories': categories,
-            'products': products,
-            'totalItemsInCart': CountItemsInCart(request)
+            "categories": categories,
+            "products": products,
+            "totalItemsInCart": CountItemsInCart(request),
         }
-        return render(request,'services/home.html', context=context)
-    
+        return render(request, "services/home.html", context=context)
+
 
 class ProductsListPage(View):
     def get(self, request, category):
@@ -45,21 +43,23 @@ class ProductsListPage(View):
         products = []
         for product in Product.objects.filter(category=category):
             product_images = ProductImage.objects.filter(product=product)
-            products.append({
-                'id': product.id,
-                'name': product.name,
-                'discount': product.discount,
-                'old_price': product.price,
-                'new_price': int(product.price*(100-product.discount)/100),
-                'image': product_images[0].image if len(product_images) else None
-            })
+            products.append(
+                {
+                    "id": product.id,
+                    "name": product.name,
+                    "discount": product.discount,
+                    "old_price": product.price,
+                    "new_price": int(product.price * (100 - product.discount) / 100),
+                    "image": product_images[0].image if len(product_images) else None,
+                }
+            )
         context = {
-            'categories': categories,
-            'products': products,
-            'category': category,
-            'totalItemsInCart': CountItemsInCart(request)
+            "categories": categories,
+            "products": products,
+            "category": category,
+            "totalItemsInCart": CountItemsInCart(request),
         }
-        return render(request,'services/products.html', context=context)
+        return render(request, "services/products.html", context=context)
 
 
 class ProductPage(View):
@@ -72,23 +72,36 @@ class ProductPage(View):
     def get(self, request, product_id):
         product = self.get_product(product_id)
         if product is None:
-            responce = '<h1>404 Not Found</h1>'
+            responce = "<h1>404 Not Found</h1>"
             return HttpResponse(responce, status=404)
         context = {
-            'categories': Category.objects.all(),
-            'product': {
-                'id': product.id,
-                'name': product.name,
-                'discount': product.discount,
-                'old_price': product.price,
-                'new_price':int( product.price*(100-product.discount)/100),
-                'images': ProductImage.objects.filter(product=product),
-                'descriptions': ProductDescription.objects.filter(product=product)
-            },
-            'totalItemsInCart': CountItemsInCart(request)
+            "categories": Category.objects.all(),
+            "product": {
+                "id": product.id,
+                "name": product.name,
+                "discount": product.discount,
+                "old_price": product.price,
+                "new_price": int(product.price * (100 - product.discount) / 100),
+                "images": ProductImage.objects.filter(product=product),
+                "descriptions": ProductDescription.objects.filter(product=product),
+            }, 
+            "totalItemsInCart": CountItemsInCart(request),
         }
-        return render(request, 'services/product.html', context=context)
+        return render(request, "services/product.html", context=context)
+
 
 class Cart(View):
     def get(self, request):
-        return render(request, 'cart/cart.html')
+        return render(request, "cart/cart.html")
+
+
+def Search(request):
+        if request.method == "POST":
+            searched = request.POST["searched"]
+            products = Product.objects.filter(name__contains=searched)
+            # if Product.objects.filter(name__isnull=False):
+            #     products = Category.objects.filter(name__contains=searched)
+                
+            return render(request, "services/search.html", {"searched": searched, "products":products})
+        else:
+            return render(request, "services/search.html", {})
