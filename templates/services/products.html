@@ -6,7 +6,7 @@
 {% endblock title %} 
 {%block main %}
 <div class="fillter-bar">
-  <h2 class="product-title">{{category}}s</h2>
+  <h3 class="product-title">{{category}}s</h2>
   <section class="product-grid">
     {% for product in products %}
     <a href="{% url 'product_url' product.id %}">

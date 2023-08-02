@@ -4,67 +4,13 @@
     flex-direction: column;
 }
 
-.product-title {
-    margin: 3.2rem 2.8rem 2rem;
-    font-size: 3.4rem;
-}
-
-.fillter-list {
-    display: flex;
-    margin: auto 3rem;
-    font-size: 2rem;
-}
-
-.fillter-list li {
-    margin-right: 2%;
-}
-
-select {
-    font-size: 2rem;
-    padding: auto 1.5rem;
-    background-color: transparent;
-    border: 0px;
-    outline: 0px;
-    font-weight: 600;
+.fillter-bar h3 {
+    margin: 3.2rem 2.8rem 1rem;
+    font-size: 2.6rem;
     color: rgb(92, 92, 92);
 }
-
-select option {
-    outline: 0px;
-    border: 0px;
-}
-
-option:hover {
-    background-image: linear-gradient(360deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
-}
-
-.sort-list {
-    border-right: 1px solid rgb(92, 92, 92);
-    padding-right: 2rem;
-}
-
-input[type="radio"] {
-    display: none;
-}
-
-li:hover,
-li:focus,
-li:active {
-    background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-}
-
-input[type="radio"].fillter:checked+span {
-    background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-}
-
-input[type="radio"].fillter:checked+select {
-    background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+.srh-for{
+    text-transform: capitalize;
 }
 
 .pro-card {
@@ -188,7 +134,7 @@ ul {
     margin: auto 5px;
 }
 
-.pro-card:hover>.pro-details .pro-title {
+.pro-card:hover .pro-title {
     background: linear-gradient(120deg, rgb(5, 247, 243), rgb(10, 130, 229), rgb(36, 2, 255));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
