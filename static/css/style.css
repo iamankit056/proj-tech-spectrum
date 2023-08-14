@@ -66,7 +66,10 @@ header {
     font-size: 2rem;
     color: rgb(92, 92, 92);
 }
-
+.img-logo{
+    height: 80px;
+    width: 130px;
+}
 .search-drop {
     height: 20vh;
     position: absolute;
