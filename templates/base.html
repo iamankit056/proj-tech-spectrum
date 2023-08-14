@@ -60,7 +60,7 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
         <button class="sp-btn">
-          <a href="cart/">
+          <a href="{% url 'user_cart_url' %}">
             <i class="fa-solid fa-cart-shopping"></i>
             {% if totalItemsInCart %}
             <span class="badge">{{totalItemsInCart}}</span>

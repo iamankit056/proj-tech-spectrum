@@ -4,6 +4,7 @@
 
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static './services/css/sproduct.css' %}">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 {% endblock stylesheet %}
 
 {% block title %} {{product.name}}{% endblock title %}
@@ -143,5 +144,4 @@
             i = i - 1;
         }
     }
-</script>
 {% endblock main %}

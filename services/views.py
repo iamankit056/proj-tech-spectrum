@@ -5,9 +5,9 @@ from cart.models import Cart
 
 
 # Create your views here.
-def CountItemsInCart(request):
+def CountItemsInCart(user):
     try:
-        return len(Cart.objects.filter(user=request.user))
+        return len(Cart.objects.filter(user=user))
     except:
         return None
 
@@ -85,7 +85,7 @@ class ProductPage(View):
                 "images": ProductImage.objects.filter(product=product),
                 "descriptions": ProductDescription.objects.filter(product=product),
             }, 
-            "totalItemsInCart": CountItemsInCart(request),
+            "totalItemsInCart": CountItemsInCart(request.user),
         }
         return render(request, "services/product.html", context=context)
 

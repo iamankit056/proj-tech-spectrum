@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.views import View
 from .models import Cart
-from services.models import Product
+from services.models import (
+    Category,
+    Product
+)
 
 # Create your views here.
 class AddProductToCart(View):
@@ -32,5 +35,8 @@ class AddProductToCart(View):
     
 
 class ShowUserCartItems(View):
-    def get(self, request, user_id):
-        return render(request, 'cart/cart.html')
+    def get(self, request):
+        context = {
+            "categories": Category.objects.all(),
+        }
+        return render(request, 'cart/cart.html', context=context)
