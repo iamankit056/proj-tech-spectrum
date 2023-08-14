@@ -89,12 +89,6 @@ class ProductPage(View):
         }
         return render(request, "services/product.html", context=context)
 
-
-class Cart(View):
-    def get(self, request):
-        return render(request, "cart/cart.html")
-
-
 def Search(request):
         if request.method == "POST":
             categories = Category.objects.all()

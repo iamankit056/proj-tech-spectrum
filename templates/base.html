@@ -15,7 +15,59 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   <link rel="stylesheet" href="{% static 'css/style.module.css' %}">
   {% block stylesheet %}{% endblock stylesheet %}
+  {% comment %}
   <script src="{% static 'services/javascript/home.js' %}">
+  </script> {% endcomment %}
+  <script>
+    var carousel = document.querySelector(".carousel");
+    var slides = carousel.querySelectorAll(".slide");
+    var activeSlide = carousel.querySelector("[data-active]");
+    console.log(slides)
+
+    var activeIndex = Array.prototype.indexOf.call(slides, activeSlide);
+    function nextSlide() {
+      activeSlide.removeAttribute("data-active");
+      activeIndex++;
+      if (activeIndex == slides.length) {
+        activeIndex = 0;
+      }
+      activeSlide = slides[activeIndex];
+      activeSlide.setAttribute("data-active", "");
+    }
+
+    function prevSlide() {
+      activeSlide.removeAttribute("data-active");
+      activeIndex--;
+      if (activeIndex < 0) {
+        activeIndex = slides.length - 1;
+      }
+      activeSlide = slides[activeIndex];
+      activeSlide.setAttribute("data-active", "");
+    }
+
+    var interval = setInterval(nextSlide, 3000);
+    document.addEventListener("keydown", function (event) {
+      if (event.keyCode == 37) {
+        prevSlide();
+        clearInterval(interval);
+        interval = setInterval(nextSlide, 3000);
+      }
+
+      if (event.keyCode == 39) {
+        nextSlide();
+        clearInterval(interval);
+        interval = setInterval(nextSlide, 3000);
+      }
+    });
+    function toggleSearchBar() {
+      document.getElementById("searchBarContainer").style.top = "0px"
+      document.getElementById("nav-bar").style.display = "none"
+      window.scrollBy(0, -100000)
+    }
+    function closesearch() {
+      document.getElementById("searchBarContainer").style.top = "-200px"
+      document.getElementById("nav-bar").style.display = "flex"
+    }
   </script>
   <title>{% block title %}{% endblock title %}</title>
 </head>
@@ -29,20 +81,20 @@
         </button>
       </div>
       <form method="post" action="{% url 'search_url' %}">
-      <div class="search-area">
-        {% csrf_token %}
-        <button class="s-btn" type="submit">
+        <div class="search-area">
+          {% csrf_token %}
+          <button class="s-btn" type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-        <div class="search-bar">
-          <input type="search" name="searched" id="searchbar" placeholder="Search Product">
-        </div>
-        </form>
+          </button>
+          <div class="search-bar">
+            <input type="search" name="searched" id="searchbar" placeholder="Search Product">
+          </div>
+      </form>
       </div>
     </section>
     <nav class="nav-bar" id="nav-bar">
       <div class="logo">
-        <a href="{% url 'homepage_url' %}">LOGO</a>
+        <a href="{% url 'homepage_url' %}"><img src="{% static 'services/images/Home Page/logo.jpg' %}" alt="" class="img-logo"></a>
       </div>
       <div class="site-links" id="link">
         <ul>
@@ -97,55 +149,6 @@
   </header>
   <main>{% block main %}{% endblock main %}</main>
   <script>
-    var carousel = document.querySelector(".carousel");
-    var slides = carousel.querySelectorAll(".slide");
-    var activeSlide = carousel.querySelector("[data-active]");
-    console.log(slides)
-
-    var activeIndex = Array.prototype.indexOf.call(slides, activeSlide);
-    function nextSlide() {
-      activeSlide.removeAttribute("data-active");
-      activeIndex++;
-      if (activeIndex == slides.length) {
-        activeIndex = 0;
-      }
-      activeSlide = slides[activeIndex];
-      activeSlide.setAttribute("data-active", "");
-    }
-
-    function prevSlide() {
-      activeSlide.removeAttribute("data-active");
-      activeIndex--;
-      if (activeIndex < 0) {
-        activeIndex = slides.length - 1;
-      }
-      activeSlide = slides[activeIndex];
-      activeSlide.setAttribute("data-active", "");
-    }
-
-    var interval = setInterval(nextSlide, 3000);
-    document.addEventListener("keydown", function (event) {
-      if (event.keyCode == 37) {
-        prevSlide();
-        clearInterval(interval);
-        interval = setInterval(nextSlide, 3000);
-      }
-
-      if (event.keyCode == 39) {
-        nextSlide();
-        clearInterval(interval);
-        interval = setInterval(nextSlide, 3000);
-      }
-    });
-    function toggleSearchBar() {
-      document.getElementById("searchBarContainer").style.top = "0px"
-      document.getElementById("nav-bar").style.display = "none"
-      window.scrollBy(0, -100000)
-    }
-    function closesearch() {
-      document.getElementById("searchBarContainer").style.top = "-200px"
-      document.getElementById("nav-bar").style.display = "flex"
-    }
     var i = 0;
     function usrdrop() {
       if (i == 0) {
