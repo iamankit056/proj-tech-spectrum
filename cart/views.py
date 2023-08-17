@@ -44,8 +44,11 @@ class CartProductCounter(View):
 
 class ShowUserCartItems(View):
     def get(self, request):
+        cart_items = Cart.objects.filter(user=request.user)
+        total_price = cart_items.product.aaggregate(Sum('price'))
         context = {
             "categories": Category.objects.all(),
-            "cart_items": Cart.objects.filter(user=request.user)
+            "cart_items": cart_items,
+
         }
         return render(request, 'cart/cart.html', context=context)
