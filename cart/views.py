@@ -6,6 +6,7 @@ from services.models import (
     Product
 )
 from .models import Cart
+from django.db.models import Sum
 
 # Create your views here.
 class AddProductToCart(View):
@@ -44,11 +45,15 @@ class CartProductCounter(View):
 
 class ShowUserCartItems(View):
     def get(self, request):
-        cart_items = Cart.objects.filter(user=request.user)
-        total_price = cart_items.product.aaggregate(Sum('price'))
+        cart_items = Cart.objects.filter(user=request.user).values()
+        print(cart_items)
+        total_price = cart_items['product'].aaggregate(Sum('price'))
+        total_discount = cart_items.product.aaggregate(Sum('discount'))/cart_items.count()
         context = {
             "categories": Category.objects.all(),
             "cart_items": cart_items,
-
+            "total_price": total_price,
+            "total_discount": total_discount,
+            "final_price": total_price * (100-total_discount)/100
         }
         return render(request, 'cart/cart.html', context=context)
