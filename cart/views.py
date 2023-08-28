@@ -42,7 +42,6 @@ class CartProductCounter(View):
         return redirect('product_url', cart_item.product.id)
         
 
-
 class ShowUserCartItems(View):
     def get(self, request):
         cart_items = Cart.objects.filter(user=request.user).values()

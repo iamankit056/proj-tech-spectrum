@@ -10,6 +10,7 @@
 {% block title %} {{product.name}}{% endblock title %}
 
 {% block main %}
+
 <section class="sproduct">
     <div class="row">
         <div class="col-img">
@@ -77,10 +78,8 @@
     </div>
 </section>
 <script>
-
     var maining = document.getElementById("MainImg");
     var smallimg = document.getElementsByClassName("small-img");
-    var i = 0;
     smallimg[0].onclick = function () {
         maining.src = smallimg[0].src;
     }
@@ -93,55 +92,5 @@
     smallimg[3].onclick = function () {
         maining.src = smallimg[3].src;
     }
-    const starRating = document.querySelector('.star-rating');
-    const stars = starRating.querySelectorAll('.fa-star');
-    const ratingInput = document.getElementById('rating-input');
-
-    stars.forEach((star, index) => {
-        star.addEventListener('click', () => {
-            const rating = index + 1;
-            setRating(rating);
-        });
-
-        star.addEventListener('mouseover', () => {
-            highlightStars(index);
-        });
-
-        star.addEventListener('mouseleave', () => {
-            highlightStars(ratingInput.value - 1);
-        });
-    });
-    function setRating(rating) {
-        stars.forEach((star, index) => {
-            if (index < rating) {
-                star.classList.add('checked');
-            } else {
-                star.classList.remove('checked');
-            }
-        });
-
-        ratingInput.value = rating;
-    }
-    function highlightStars(rating) {
-        stars.forEach((star, index) => {
-            if (index <= rating) {
-                star.classList.add('checked');
-            } else {
-                star.classList.remove('checked');
-            }
-        });
-    }
-    function show() {
-        if (i == 0) {
-            document.getElementById('review-form').style.display = 'block';
-            document.getElementById('review-form').style.transition = " width 2s, height 4s;";
-            i = i + 1;
-            window.scrollBy(0, 200)
-        }
-        else {
-            document.getElementById('review-form').style.display = 'none';
-            document.getElementById('review-form').style.transition = " width 2s, height 4s;";
-            i = i - 1;
-        }
-    }
+</script>
 {% endblock main %}

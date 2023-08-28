@@ -58,17 +58,14 @@ header {
 }
 
 .logo {
-    margin-left: 2rem;
+    width: 10%;
+    height: 10rem;
+    overflow: hidden;
 }
 
-.logo a {
-    text-decoration: none;
-    font-size: 2rem;
-    color: rgb(92, 92, 92);
-}
 .img-logo{
-    height: 80px;
-    width: 130px;
+    width: 100%;
+    height: 100%;
 }
 .search-drop {
     height: 20vh;
@@ -164,6 +161,9 @@ header {
         margin-left: 2rem;
         margin-right: 2rem;
         flex-grow: 1;
+    }
+    .sp-btn i{
+        font-size:16px ;
     }
 
     .site-links ul {
