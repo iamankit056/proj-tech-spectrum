@@ -32,7 +32,7 @@ class HomePage(View):
         context = {
             "categories": categories,
             "products": products,
-            "totalItemsInCart": CountItemsInCart(request),
+            "totalItemsInCart": CountItemsInCart(request.user),
         }
         return render(request, "services/home.html", context=context)
 
@@ -57,7 +57,7 @@ class ProductsListPage(View):
             "categories": categories,
             "products": products,
             "category": category,
-            "totalItemsInCart": CountItemsInCart(request),
+            "totalItemsInCart": CountItemsInCart(request.user),
         }
         return render(request, "services/products.html", context=context)
 

@@ -11,7 +11,16 @@ from .models import Cart
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-class AddProductToCart(View):
+def CountItemsInCart(user):
+    try:
+        return len(Cart.objects.filter(user=user))
+    except:
+        return None
+    
+
+class AddProductToCart(LoginRequiredMixin, View):
+    login_url = 'login_url'
+    redirect_field_name = 'login_url'
     def get_product(self, product_id):
         try: 
             return Product.objects.get(id=product_id)
@@ -30,7 +39,9 @@ class AddProductToCart(View):
         return redirect('product_url', product_id)
     
 
-class CartProductCounter(View):
+class CartProductCounter(LoginRequiredMixin, View):
+    login_url = 'login_url'
+    redirect_field_name = 'login_url'
     def get_cart_item(self, cart_id):
         try: 
             return Cart.objects.get(id=cart_id)
@@ -43,7 +54,6 @@ class CartProductCounter(View):
         cart_item.save()
         return redirect('product_url', cart_item.product.id)
         
-
 
 class ShowUserCartItems(LoginRequiredMixin, View):
     login_url = 'login_url'
@@ -77,5 +87,6 @@ class ShowUserCartItems(LoginRequiredMixin, View):
             "total_price": total_price,
             "total_discount": total_discount,
             "final_price": float(total_price) * (100-total_discount)/100,
+            "totalItemsInCart": CountItemsInCart(request.user),
         }
         return render(request, 'cart/cart.html', context=context)
