@@ -3,10 +3,12 @@ from django.views import View
 from .models import Cart
 from services.models import (
     Category,
-    Product
+    Product,
+    ProductImage,
+    ProductDescription,
 )
 from .models import Cart
-from django.db.models import Sum
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class AddProductToCart(View):
@@ -43,17 +45,37 @@ class CartProductCounter(View):
         
 
 
-class ShowUserCartItems(View):
+class ShowUserCartItems(LoginRequiredMixin, View):
+    login_url = 'login_url'
+    redirect_field_name = 'login_url'
     def get(self, request):
-        cart_items = Cart.objects.filter(user=request.user).values()
-        print(cart_items)
-        total_price = cart_items['product'].aaggregate(Sum('price'))
-        total_discount = cart_items.product.aaggregate(Sum('discount'))/cart_items.count()
+        cart_items = Cart.objects.filter(user=request.user)
+        products = []
+        total_price = 0
+        total_discount = 0
+        for cart_item in cart_items:
+            product = Product.objects.get(id=cart_item.product_id)
+            total_price += product.price
+            total_discount += product.discount
+            product_images = ProductImage.objects.filter(product=product)
+            products.append(
+                {
+                    "id": product.id,
+                    "name": product.name,
+                    "discount": product.discount,
+                    "old_price": product.price,
+                    "new_price": int(product.price * (100 - product.discount) / 100),
+                    "image": product_images[0].image if len(product_images) else None,
+                    'desc': ProductDescription.objects.filter(product=product)
+                }
+            )
+        total_discount = total_discount / len(cart_items)
         context = {
             "categories": Category.objects.all(),
-            "cart_items": cart_items,
+            "products": products,
+            'total_items': len(products),
             "total_price": total_price,
             "total_discount": total_discount,
-            "final_price": total_price * (100-total_discount)/100
+            "final_price": float(total_price) * (100-total_discount)/100,
         }
         return render(request, 'cart/cart.html', context=context)

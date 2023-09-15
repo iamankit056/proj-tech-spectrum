@@ -81,7 +81,7 @@ class ProductPage(View):
                 "name": product.name,
                 "discount": product.discount,
                 "old_price": product.price,
-                "new_price": int(product.price * (100 - product.discount) / 100),
+                "new_price": float(product.price * (100 - product.discount) / 100),
                 "images": ProductImage.objects.filter(product=product),
                 "descriptions": ProductDescription.objects.filter(product=product),
             }, 

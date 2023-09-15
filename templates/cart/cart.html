@@ -13,31 +13,36 @@
         <div class="ch-title">
             <h2>Checkout</h2>
         </div>
+        <!-- cart items -->
         <div class="ch-stepcnt">
             <div class="chekout-steps">
                 <div class="cs-header">
                     <div class="cs-title">
-                        <h3>1.Shopping Bag (2 Items)</h3>
+                        <h3>1.Shopping Bag ({{total_items}})</h3>
                     </div>
                     <div class="cs-dropdown">
                         <img src="{% static './services/images/cart Page/arrow-up-svgrepo-com.svg' %}" alt="" onclick="prodropdown()" id="shop-drop-btn">
                     </div>
                 </div>
                 <div id="shop-items">
+                    {% for p in products %}
                     <div class="cs-item">
                         <div class="cs-pimg">
-                            <a href="#">
-                                <img src="{% static './services/images/Product Page/realme c55.jpg' %}" alt="">
+                            <a href="{% url "product_url" p.id %}">
+                                <img src="{{p.image.url}}" alt="">
                             </a>
                         </div>
                         <div class="cs-pdetails">
                             <div class="cs-pname">
                                 <a href="">
-                                    <b>Realme C55 (Rainforest, 64) (4 GB Ram)</b>
+                                    <b>{{p.name}}</b>
+                                    {% for d in p.desc %}
+                                        {{d.description}},
+                                    {% endfor %}
                                 </a>
                             </div>
                             <div class="cs-pprice">
-                                <Strong>₹8,999 <del>₹9,999</del></Strong>
+                                <Strong>₹{{p.new_price}} <del>₹{{p.old_price}}</del></Strong>
                             </div>
                             <div class="cs-pqty">
                                 <select name="p-qty" id="p-qty">
@@ -54,36 +59,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="cs-item">
-                        <div class="cs-pimg">
-                            <a href="#">
-                                <img src="{% static './services/images/Product Page/realme c55.jpg' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="cs-pdetails">
-                            <div class="cs-pname">
-                                <a href="">
-                                    <b>Realme C55 (Rainforest, 64) (4 GB Ram)</b>
-                                </a>
-                            </div>
-                            <div class="cs-pprice">
-                                <Strong>₹8,999 <del>₹9,999</del></Strong>
-                            </div>
-                            <div class="cs-pqty">
-                                <select name="p-qty" id="p-qty">
-                                    <option value="1">Qty: 1</option>
-                                    <option value="2">Qty: 2</option>
-                                    <option value="3">Qty: 3</option>
-                                    <option value="4">Qty: 5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="remove-btn">
-                            <a href="#">
-                                <img src="{% static './services/images/cart Page/cross-small-svgrepo-com.svg' %}" alt="">
-                            </a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="chekout-steps">
@@ -131,10 +107,11 @@
             </div>
         </div>
     </div>
+    <!-- order summary -->
     <div class="o-sum-are"></div>
     <div class="order-summary">
         <div class="os-title">
-            <h3>Order Summmary (2 Items)</h3>
+            <h3>Order Summmary ({{total_items}})</h3>
         </div>
         <div class="os-body">
             <div class="o-des">
@@ -143,8 +120,8 @@
                 <p>Shipping</p>
             </div>
             <div class="o-val">
-                <p id="list-price">₹ 19,998</p>
-                <p id="discount">-₹ 2,000</p>
+                <p id="list-price">₹{{total_price}}</p>
+                <p id="discount">-{{total_discount}}%</p>
                 <p>FREE</p>
             </div>
         </div>
@@ -154,7 +131,7 @@
                 <p>Order Total</p>
             </div>
             <div class="tot-price">
-                <p id="total-price">₹ 17,998</p>
+                <p id="total-price">₹{{final_price}}</p>
             </div>
         </div> 
         <a href="">
