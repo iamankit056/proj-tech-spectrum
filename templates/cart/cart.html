@@ -44,65 +44,14 @@
                             <div class="cs-pprice">
                                 <Strong>₹{{p.new_price}} <del>₹{{p.old_price}}</del></Strong>
                             </div>
-                            <div class="cs-pqty">
-                                <select name="p-qty" id="p-qty">
-                                    <option value="1">Qty: 1</option>
-                                    <option value="2">Qty: 2</option>
-                                    <option value="3">Qty: 3</option>
-                                    <option value="4">Qty: 5</option>
-                                </select>
-                            </div>
                         </div>
                         <div class="remove-btn">
-                            <a href="#">
+                            <a href="{% url "remove_cart_item_url" p.cart_id %}">
                                 <img src="{% static './services/images/cart Page/cross-small-svgrepo-com.svg' %}" alt="">
                             </a>
                         </div>
                     </div>
                     {% endfor %}
-                </div>
-            </div>
-            <div class="chekout-steps">
-                <div class="cs-header">
-                    <div class="cs-title">
-                        <h3>2.Shipping Details</h3>
-                    </div>
-                    <div class="cs-dropdown">
-                        <img src="{% static './services/images/cart Page/arrow-up-svgrepo-com.svg' %}" alt="" id="ship-drop-btn" onclick="addropdown()">
-                    </div>
-                </div>
-                <div id="cs-addresses">
-                    <!-- <div class="cs-noaddress">
-                        Add Address
-                    </div> -->
-                    <div class="cs-exaddress">
-                        <div class="add-name">
-                            <h4>Kaushal Singh</h4>
-                            <p>Home</p>
-                        </div>
-                        <div class="address-details">
-                            <span>111, New Baradwari,</span>
-                            <br>
-                            <br>
-                            <span>Durga Puja Maidan,</span>
-                            <br>
-                            <br>
-                            <span>East Singhbhum, Jharkand, 831001</span>
-                        </div>
-                        <div class="delivery-box">
-                            <div class="d-csphone">
-                                <span>Phone no: </span>
-                                <span>8825xxxxxx</span>
-                            </div>
-                            <div class="fr-delivery">
-                                <i class="fa-solid fa-paper-plane"></i>
-                                <span>Expected delivery within 10 business days.</span>
-                            </div>
-                        </div>
-                        <div class="dh-addedit">
-                            <div class="add-edit">Add/Edit Address</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -134,68 +83,105 @@
                 <p id="total-price">₹{{final_price}}</p>
             </div>
         </div> 
-        <a href="">
-        <div class="ord-btn">
+        <div class="ord-btn" onclick='MakeOrder(this)' data-amount="{{final_price}}">
             Order Now
         </div>
-        </a>
     </div>
 </section>
-    <script>
-        var p = 0, a = 0, s = 0
-        function prodropdown() {
-            if (p == 0) {
-                document.getElementById("shop-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
-                document.getElementById("shop-items").style.display = "none"
-                p++
-            }
-            else {
-                document.getElementById("shop-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
-                document.getElementById("shop-items").style.display = "block"
-                p--
-            }
-        }
-        function addropdown() {
-            if (a == 0) {
-                document.getElementById("ship-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
-                document.getElementById("cs-addresses").style.display = "none"
-                a++
-            }
-            else {
-                document.getElementById("ship-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
-                document.getElementById("cs-addresses").style.display = "block"
-                a--
-            }
-        }
-
-        function handlePayment() {
-            var options = {
-                "key": "YOUR_KEY_ID", // Enter the Key ID generated from the Dashboard
-                "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-                "currency": "INR",
-                "name": "Acme Corp", //your business name
-                "description": "Test Transaction",
-                "image": "https://example.com/your_logo",
-                "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-                "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
-                "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
-                    "name": "Gaurav Kumar", //your customer's name
-                    "email": "gaurav.kumar@example.com",
-                    "contact": "9000090000" //Provide the customer's phone number for better conversion rates 
-                },
-                "notes": {
-                    "address": "Razorpay Corporate Office"
-                },
-                "theme": {
-                    "color": "#3399cc"
-                }
-            };
-    
-            var rzp1 = new Razorpay(options);
-            document.getElementById('rzp-button1').onclick = function(e){
+<script> 
+    function MakeOrder(e) 
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8000/cart/api/order",
+            data: {
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                amount: e.dataset.amount
+            },
+            success: function(data) {
+                var options = {
+                    "key": "rzp_test_TCjpjFREfXmCLQ",
+                    "amount": "50000", 
+                    "currency": "INR",
+                    "name": "Tech Spectrum", 
+                    "description": "Test Transaction",
+                    "image": "/static/services/images/Home%20Page/logo.jpg",
+                    "order_id": data.id, 
+                    "handler": function (response){
+                        alert('Order Placed');
+                        alert(`${response.razorpay_payment_id} ${response.razorpay_order_id} ${response.razorpay_signature}`);
+                    },
+                    "prefill": { 
+                        "name": "{{user.first_name}}", //your customer's name
+                        "email": "{{user.email}}",
+                    },
+                    "notes": {
+                        "address": "Razorpay Corporate Office"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
                 rzp1.open();
                 e.preventDefault();
             }
+        });
+    }
+    var p = 0, a = 0, s = 0
+    function prodropdown() {
+        if (p == 0) {
+            document.getElementById("shop-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
+            document.getElementById("shop-items").style.display = "none"
+            p++
         }
-    </script>
+        else {
+            document.getElementById("shop-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
+            document.getElementById("shop-items").style.display = "block"
+            p--
+        }
+    }
+    function addropdown() {
+        if (a == 0) {
+            document.getElementById("ship-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
+            document.getElementById("cs-addresses").style.display = "none"
+            a++
+        }
+        else {
+            document.getElementById("ship-drop-btn").style.content = "url(../../static/services/images/cart Page/arrow-down-svgrepo-com.svg)"
+            document.getElementById("cs-addresses").style.display = "block"
+            a--
+        }
+    }
+
+    function handlePayment() {
+        var options = {
+            "key": "YOUR_KEY_ID", // Enter the Key ID generated from the Dashboard
+            "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Acme Corp", //your business name
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+            "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+                "name": "Gaurav Kumar", //your customer's name
+                "email": "gaurav.kumar@example.com",
+                "contact": "9000090000" //Provide the customer's phone number for better conversion rates 
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+
+        var rzp1 = new Razorpay(options);
+        document.getElementById('rzp-button1').onclick = function(e){
+            rzp1.open();
+            e.preventDefault();
+        }
+    }
+</script>
 {% endblock main %}

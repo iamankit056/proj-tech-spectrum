@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% load static %} {% block stylesheet %}
+<link rel="stylesheet" href="{% static 'accounts/profile.css' %}" />
+{% endblock stylesheet %} {% block main %}
+<div class="profile">
+    <form method="post">
+        {% csrf_token %}
+        <h3>Profile</h3>
+        <div class="details">
+            <label for="fname">
+                <p>First Name</p>
+            </label>
+            <input type="text" name="fname" value="{{user.first_name}}" id="fname" disabled />
+            <label for="lname">
+                <p>Last Name</p>
+            </label>
+            <input type="text" name="lname" value="{{user.last_name}}" id="lname" disabled />
+            <label>
+                <p>Username</p>
+            </label>
+            <input type="text" value="{{user.username}}" disabled/>
+            <label for="email">
+                <p>Email</p>
+            </label>
+            <input type="email" name="email" value="{{user.email}}" id="email" disabled value="{{user.email}}" />
+            <div onclick='edit()' id="edit-btn">Edit Details</div>
+            <button type="submit" id="save-btn">Save Changes</button>
+        </div>
+    </form>
+</div>
+<script>
+    /* store previous input state */
+    let preFName, preLName, preEmail;
+    function edit() {
+            const fnameInput = document.getElementById('fname');
+            const lnameInput = document.getElementById('lname');
+            const emailInput = document.getElementById('email');
+            const editButton = document.getElementById('edit-btn');
+            const saveButton = document.getElementById('save-btn');
+            // Check the current state of the input fields
+            const areFieldsDisabled = fnameInput.disabled;
+
+            if (areFieldsDisabled) {
+                // Enable input fields
+                preFName = fnameInput.value;
+                preLName = lnameInput.value;
+                preEmail = emailInput.value;
+                fnameInput.removeAttribute('disabled');
+                lnameInput.removeAttribute('disabled');
+                emailInput.removeAttribute('disabled');
+                editButton.textContent = 'Cancel'; 
+                saveButton.style.display = 'block';
+            } else {
+                // Disable input fields
+                fnameInput.value = preFName;
+                lnameInput.value = preLName;
+                emailInput.value = preEmail;
+                fnameInput.setAttribute('disabled', 'true');
+                lnameInput.setAttribute('disabled', 'true');
+                emailInput.setAttribute('disabled', 'true');
+                editButton.textContent = 'Edit Details'; // Change the button text back to "Edit Details"
+                saveButton.style.display = 'none';
+            }
+        }
+</script>
+{% endblock main %}

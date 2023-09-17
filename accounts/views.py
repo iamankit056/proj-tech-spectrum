@@ -6,8 +6,16 @@ from django.contrib import messages
 # from accounts.models import Profile
 from django.shortcuts import redirect
 from services.models import Category
+from cart.models import Cart
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
+def CountItemsInCart(user):
+    try:
+        return len(Cart.objects.filter(user=user))
+    except:
+        return None
+    
 
 class Login(View):
     def get(self, request):
@@ -97,13 +105,42 @@ class Register(View):
             return redirect('login_url')
         
 
-class Logout(View):
+class Logout(LoginRequiredMixin, View):
+    login_url = 'login_url'
+    redirect_field_name = 'redirect'
     def get(self, request):
         logout(request)
         return redirect('homepage_url')
-    
 
-    
-class Profile(View):
+
+class Profile(LoginRequiredMixin, View):
+    login_url = 'login_url'
+    redirect_field_name = 'redirect'
+    def get_user(self, username):
+        try:
+            return User.objects.get(username=username)
+        except:
+            return None
+        
     def get(self, request):
-        return HttpResponse('<h1>Profile Page</h1>')
+        context = {
+            'categories': Category.objects.all(),
+            'totalItemsInCart': CountItemsInCart(request.user),
+            'user' : request.user,
+        }
+        return render(request, 'accounts/profile.html', context=context)
+    
+    def post(self,request):
+        categories = Category.objects.all()
+        firstname = request.POST["fname"]
+        lastname = request.POST["lname"]
+        email = request.POST["email"]
+        user = self.get_user(request.user.username)
+        if user is None:
+            messages.error('user does not exist.')
+        else:
+            user.first_name = firstname
+            user.last_name = lastname
+            user.email = email
+            user.save()
+        return redirect('profile_url')

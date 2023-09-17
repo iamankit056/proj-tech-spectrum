@@ -9,6 +9,10 @@ from services.models import (
 )
 from .models import Cart
 from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+import razorpay
 
 # Create your views here.
 def CountItemsInCart(user):
@@ -20,7 +24,7 @@ def CountItemsInCart(user):
 
 class AddProductToCart(LoginRequiredMixin, View):
     login_url = 'login_url'
-    redirect_field_name = 'login_url'
+    redirect_field_name = 'redirect'
     def get_product(self, product_id):
         try: 
             return Product.objects.get(id=product_id)
@@ -37,27 +41,27 @@ class AddProductToCart(LoginRequiredMixin, View):
         except:
             pass
         return redirect('product_url', product_id)
-    
 
-class CartProductCounter(LoginRequiredMixin, View):
+
+class RemoveProductToCart(LoginRequiredMixin, View):
     login_url = 'login_url'
-    redirect_field_name = 'login_url'
+    redirect_field_name = 'redirect' 
     def get_cart_item(self, cart_id):
         try: 
             return Cart.objects.get(id=cart_id)
         except:
             return None
-        
-    def get(self, request, cart_id, counter):
-        cart_item = self.get_cart_item(cart_id=cart_id)
-        cart_item.quentity += counter
-        cart_item.save()
-        return redirect('product_url', cart_item.product.id)
-        
+
+    def get(self, request, cart_id):
+        cart_item = self.get_cart_item(cart_id)
+        if cart_item is not None:
+            cart_item.delete()
+        return redirect('user_cart_url')
+    
 
 class ShowUserCartItems(LoginRequiredMixin, View):
     login_url = 'login_url'
-    redirect_field_name = 'login_url'
+    redirect_field_name = 'redirect'
     def get(self, request):
         cart_items = Cart.objects.filter(user=request.user)
         products = []
@@ -70,6 +74,7 @@ class ShowUserCartItems(LoginRequiredMixin, View):
             product_images = ProductImage.objects.filter(product=product)
             products.append(
                 {
+                    "cart_id": cart_item.id,
                     "id": product.id,
                     "name": product.name,
                     "discount": product.discount,
@@ -79,7 +84,10 @@ class ShowUserCartItems(LoginRequiredMixin, View):
                     'desc': ProductDescription.objects.filter(product=product)
                 }
             )
-        total_discount = total_discount / len(cart_items)
+        try:
+            total_discount = total_discount / len(cart_items)
+        except:
+            total_discount = 0
         context = {
             "categories": Category.objects.all(),
             "products": products,
@@ -90,3 +98,14 @@ class ShowUserCartItems(LoginRequiredMixin, View):
             "totalItemsInCart": CountItemsInCart(request.user),
         }
         return render(request, 'cart/cart.html', context=context)
+    
+
+class MakeOrder(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request):
+        total_amount = request.data.get('amount')
+        total_amount = float(total_amount)
+        client = razorpay.Client(auth=("rzp_test_TCjpjFREfXmCLQ", "gmxnPSmihhtG2IAXHGplMQwS"))
+        data = { "amount": total_amount*100, "currency": "INR", "receipt": "order_rcptid_11" }
+        payment = client.order.create(data=data)
+        return Response(data=payment)
