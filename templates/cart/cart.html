@@ -47,7 +47,7 @@
                         </div>
                         <div class="remove-btn">
                             <a href="{% url "remove_cart_item_url" p.cart_id %}">
-                                <img src="{% static './services/images/cart Page/cross-small-svgrepo-com.svg' %}" alt="">
+                                <i class="fa-solid fa-xmark"></i>
                             </a>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
             url: "http://localhost:8000/cart/api/order",
             data: {
                 csrfmiddlewaretoken: "{{csrf_token}}",
-                amount: e.dataset.amount
+                amount: e.dataset.amount,
             },
             success: function(data) {
                 var options = {

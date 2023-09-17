@@ -101,7 +101,7 @@ class ShowUserCartItems(LoginRequiredMixin, View):
     
 
 class MakeOrder(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     def post(self, request):
         total_amount = request.data.get('amount')
         total_amount = float(total_amount)
